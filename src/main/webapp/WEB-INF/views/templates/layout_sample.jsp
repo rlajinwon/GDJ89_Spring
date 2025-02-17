@@ -19,8 +19,7 @@
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
 	
-		<!-- detail pagents 내용 작성 -->
-		
+		<!-- contents 내용 작성 -->
 	
 	</div>
 </div>
