@@ -23,11 +23,16 @@ public class ProductController {
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
 	public String add() throws Exception{
-		System.out.println("Product add");
+		
 		return "products/add";
 	}
 	
-	
+	@RequestMapping(value = "add", method = RequestMethod.POST)
+	public String add2() throws Exception{
+		
+		return "products/add";
+	}
+		
 	
 
 }

@@ -16,29 +16,36 @@
 
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
-
+				
+			
+			<form action="./add" method="post">
+						
 			<div class="mb-3">
-				<label for="formGroupExampleInput" class="form-label">테이블1값
-					</label> <input type="text" class="form-control"
-					id="formGroupExampleInput" placeholder="값을 입력하세요">
+				<label for="productName" class="form-label">상품명
+					</label> <input type="text" name="productName" class="form-control"
+					id="productName" placeholder="상품명 입력">
 			</div>
 			
 			<div class="mb-3">
-				<label for="formGroupExampleInput2" class="form-label">테이블2값
-					</label> <input type="text" class="form-control"
-					id="formGroupExampleInput2" placeholder="값을 입력하세요">
+				<label for="productRate" class="form-label">이자율
+					</label> <input type="text" name="productRate" class="form-control"
+					id="productRate" placeholder="x.xx">
 			</div>
 
 				<div class="mb-3">
-				<label for="formGroupExampleInput2" class="form-label">테이블3값
-					</label> <input type="text" class="form-control"
-					id="formGroupExampleInput2" placeholder="값을 입력하세요">
+				<label for="productDate" class="form-label">만가일
+					</label> <input type="date" name="productDate" class="form-control"
+					id="productDate" placeholder="값을 입력하세요">
 			</div>
+			<div class="mb-3">
+  			<label for="productDetail" class="form-label">상품설명</label>
+ 			 <textarea class="form-control" name="productDate" id="exampleFormControlTextarea1" rows="10"></textarea>
+				</div>
+				
+			  <button type="submit" class="btn btn-dark">Submit</button>
 			
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  			<a href ="#" ><button class="btn btn-dark me-md-2" type="button">입력</button></a>
-			</div>
 			
+			</form>
 			
 		</div>
 		
