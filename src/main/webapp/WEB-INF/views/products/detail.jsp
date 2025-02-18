@@ -19,7 +19,24 @@
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
 	
-		<!-- detail pagents 내용 작성 -->
+	
+		<c:choose>
+		<c:when test="${not empty dto}">
+		<h3>상품번호: ${dto.productNum}</h3>
+		<h3>상품이름: ${dto.productName}</h3>
+		<h3>이자율: ${dto.productRate}</h3>
+		<h3>만기일: ${dto.productDate}</h3>
+		<h3>상세정보: ${dto.productDetail}</h3>
+		
+			</c:when>
+		
+		<c:otherwise>
+		<h3>부서 정보가 없다</h3>
+		
+		</c:otherwise>
+		</c:choose>
+	
+	
 		
 	
 	</div>

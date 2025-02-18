@@ -1,9 +1,12 @@
 package com.winter.app.products;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,18 +17,28 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	
+	/*
+	 *  Model -> requestScope 와 영역이 같다 라이프 사이클이 비슷하다
+	 *  응답이 발생하면 소멸
+	 * 	request와 비슷한 일을 한다
+	 * 	java - > jsp로 데이터를 전달할때 사용 
+	 * 
+	 * */
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList() throws Exception{
+	public String getList(Model model) throws Exception{
 		System.out.println("Product List");	
-		productService.getList();
+		List<ProductDTO> ar = productService.getList();
+		model.addAttribute("list", ar);
+		
 		return "products/list";
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail() throws Exception{
-		System.out.println("Product Detail");
+	public String getDetail(Model model,ProductDTO productDTO) throws Exception{
+		
+		ProductDTO productdto = productService.getDetail(productDTO);
+		model.addAttribute("dto", productdto);
 		return "products/detail";
 	}
 	
@@ -54,14 +67,12 @@ public class ProductController {
 		 * 
 		 */
 		
-		System.out.println("ProductName : " + productDTO.getProductName());
-		System.out.println("ProductRate : " + productDTO.getProductRate());
+		
+		int result = productService.add(productDTO);
 		
 		
 		
-		
-		
-		return "products/add";
+		return "redirect:./list";
 	}
 		
 	

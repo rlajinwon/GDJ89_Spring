@@ -23,30 +23,21 @@
 		<table class="table table-striped-columns">
  			<thead>
  				<tr>
- 					<td>일</td> <td>이</td> <td>삼</td>
+ 					<th>Num</th> <th>상품명</th> <th>이자율</th>
  				</tr>
  			</thead>
  			
  			<tbody>
- 				<tr>
- 					<td>1</td> <td>1</td> <td>1</td>
- 				</tr>
- 				
+ 			
+ 				<c:forEach items="${list}" var ="v">
  					<tr>
- 					<td>1</td> <td>1</td> <td>1</td>
- 				</tr>
- 				
- 					<tr>
- 					<td>1</td> <td>1</td> <td>1</td>
- 				</tr>
- 				
- 					<tr>
- 					<td>1</td> <td>1</td> <td>1</td>
- 				</tr>
- 				
- 					<tr>
- 					<td>1</td> <td>1</td> <td>1</td>
- 				</tr>
+ 						<td>${v.productNum}</td>
+ 						<td><a href="./detail?productNum=${v.productNum}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">${v.productName}</a></td>
+ 						<td>${v.productRate}</td>
+ 					</tr>
+ 					
+ 				</c:forEach>
+ 					
  			
  			</tbody>
 		</table>
