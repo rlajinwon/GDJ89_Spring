@@ -39,7 +39,7 @@
 			</div>
 			<div class="mb-3">
   			<label for="productDetail" class="form-label">상품설명</label>
- 			 <textarea class="form-control" name="productDate" id="exampleFormControlTextarea1" rows="10"></textarea>
+ 			 <textarea class="form-control" name="productDetail" id="productDetail" rows="10"></textarea>
 				</div>
 				
 			  <button type="submit" class="btn btn-dark">Submit</button>
