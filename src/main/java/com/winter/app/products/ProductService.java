@@ -31,16 +31,21 @@ public class ProductService {
 			// DAO 호출 코드 
 		
 			return productDAO.add(productDTO);
-			
-			
-			
+					
 		}
 		public ProductDTO getDetail(ProductDTO productDTO) throws Exception{
-		return productDAO.getDetail(productDTO);
-		
-		
+			return productDAO.getDetail(productDTO);
+			
 		}
 		
+		public int delete(ProductDTO productDTO) throws Exception{
+			return productDAO.delete(productDTO);
+		}
+		
+		public int update(ProductDTO productDTO) throws Exception{
+			
+			return productDAO.update(productDTO);
+		}
 		
 		
 

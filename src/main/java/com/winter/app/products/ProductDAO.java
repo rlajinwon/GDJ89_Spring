@@ -43,14 +43,7 @@ public class ProductDAO {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	public int add(ProductDTO productDTO)throws Exception{
@@ -61,10 +54,6 @@ public class ProductDAO {
 	
 		
 		
-		
-
-		
-		
 	}
 	
 		public ProductDTO getDetail(ProductDTO productDTO) throws Exception{
@@ -73,12 +62,18 @@ public class ProductDAO {
 			return sqlSession.selectOne(NAMESPACE+"getDetail",productDTO);
 		
 		
-			
-		
 		
 	}
+		
+		public int delete(ProductDTO productDTO) throws Exception{
+			
+			return sqlsession.delete(NAMESPACE+"delete",productDTO);
+		}
 	
 	
+		public int update(ProductDTO productDTO) throws Exception{
+			return sqlsession.update(NAMESPACE+"update", productDTO);
+		}
 	
 	
 	

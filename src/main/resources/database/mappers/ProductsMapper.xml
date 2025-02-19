@@ -27,7 +27,15 @@
  		INSERT INTO PRODUCTS VALUES (NO_SEQ.NEXTVAL,#{productName},#{productRate},#{productDate},#{productDetail})		
  	</insert>
  
- 
+ 	<delete id="delete" parameterType="com.winter.app.products.ProductDTO">
+ 		DELETE FROM PRODUCTS WHERE PRODUCTNUM = #{productNum}
+ 	
+ 	</delete>
+ 	
+ 	<update id="update" parameterType="com.winter.app.products.ProductDTO">
+ 		UPDATE PRODUCTS SET PRODUCTNAME = #{productName}, PRODUCTRATE = #{productRate}, PRODUCTDATE = #{productDate}, PRODUCTDETAIL = #{productDetail} WHERE PRODUCTNUM = #{productNum}
+ 	</update>
+ 	
  	
  
  </mapper> 

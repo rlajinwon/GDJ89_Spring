@@ -37,8 +37,9 @@
 		
 		</c:otherwise>
 		</c:choose>
-	
-	
+			
+			<a href ="/products/update?productNum=${dto.productNum}" ><button class="btn btn-dark me-md-2" type="button">수정</button></a>
+			
 		
 	
 	</div>
