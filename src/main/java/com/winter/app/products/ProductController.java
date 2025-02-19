@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -40,6 +41,17 @@ public class ProductController {
 		ProductDTO productdto = productService.getDetail(productDTO);
 		model.addAttribute("dto", productdto);
 		return "products/detail";
+		/*
+		 * ModelAndView mv = new ModelAndView();
+		 * 
+		 * mv.addObject("속성명","값");
+		 * 
+		 * mv.setViewName("Products/detail");
+		 * return mv;
+		 * 
+		 * 
+		 * */
+		
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
@@ -49,7 +61,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add2(ProductDTO productDTO) throws Exception{
+	public ModelAndView add2(ProductDTO productDTO) throws Exception{
 		
 		/**
 		 * 파라미터 처리 방법 
@@ -70,9 +82,10 @@ public class ProductController {
 		
 		int result = productService.add(productDTO);
 		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:./list");
 		
-		
-		return "redirect:./list";
+		return mv;
 	}
 		
 	

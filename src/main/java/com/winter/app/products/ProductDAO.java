@@ -16,6 +16,7 @@ import com.winter.app.utils.DBConnection;
 @Repository
 public class ProductDAO {
 	
+	
 	//list 
 	
 	public List<ProductDTO> getList() throws Exception{
@@ -49,7 +50,7 @@ public class ProductDAO {
 		Connection con = DBConnection.getConnection();
 		
 		String sql = "INSERT INTO PRODUCTS "
-				+ " VALUES (NO_SEQ.NEXTVAL,?,?,SYSDATE,?)" ;
+				+ " VALUES (NO_SEQ.NEXTVAL,?,?,?,?)" ;
 		
 		
 		PreparedStatement st = con.prepareStatement(sql);
@@ -57,7 +58,8 @@ public class ProductDAO {
 		
 		st.setString(1, productDTO.getProductName());
 		st.setDouble(2, productDTO.getProductRate());
-		st.setString(3, productDTO.getProductDetail());
+		st.setDate(3, productDTO.getProductDate());
+		st.setString(4, productDTO.getProductDetail());
 		
 		result = st.executeUpdate();
 		
