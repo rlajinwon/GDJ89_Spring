@@ -4,16 +4,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- <mapper>
+
+	<!-- namespace의값은 다른 mapper의 다른 namespace와 중복 X  -->
+	<!-- 사용하는 DAO의 클래스명을 주로 사용 -->
+ <mapper namespace="com.winter.app.products.ProductDAO">
+ 	
+ 	<!-- DAO의 메서드명을 ID로 사용 -->
+ 	<select id="getDetail" resultType="com.winter.app.products.ProductDTO">
+ 		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = 63
+ 	</select>
+
  
- 	<select id="">
- 		SELECT * FROM PRODUCTS ORDER BY PRODUCTNUM DESC
- 	
- 	</select>
- 	
- 	<select id="">
- 		
- 	</select>
+ 
  
  
  </mapper> 
