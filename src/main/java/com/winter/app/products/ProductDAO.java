@@ -58,7 +58,7 @@ public class ProductDAO {
 	
 		public ProductDTO getDetail(ProductDTO productDTO) throws Exception{
 			
-			//statement = mapper의 id 값을 넣는다.
+			//statement = mapper�쓽 id 媛믪쓣 �꽔�뒗�떎.
 			return sqlSession.selectOne(NAMESPACE+"getDetail",productDTO);
 		
 		

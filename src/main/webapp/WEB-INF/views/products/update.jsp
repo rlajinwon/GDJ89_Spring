@@ -23,34 +23,28 @@
 		
 		
 			<form action="./update" method="post">
-						
-			<div class="mb-3">
-				<label for="productName" class="form-label">상품명
-					</label> <input type="text" name="productName" class="form-control"
-					id="productName" placeholder="상품명 입력">
-			</div>
+		
+			<input type="hidden" name="productNum" value="${dto.productNum }">
 			
-			<div class="mb-3">
-				<label for="productRate" class="form-label">이자율
-					</label> <input type="text" name="productRate" class="form-control"
-					id="productRate" placeholder="x.xx">
-			</div>
-
-				<div class="mb-3">
-				<label for="productDate" class="form-label">만가일
-					</label> <input type="date" name="productDate" class="form-control"
-					id="productDate" placeholder="값을 입력하세요">
-			</div>
-			<div class="mb-3">
-  			<label for="productDetail" class="form-label">상품설명</label>
- 			 <textarea class="form-control" name="productDetail" id="productDetail" rows="10"></textarea>
-				</div>
-				
-			  <button type="submit" class="btn btn-dark">수정하기</button>
-			
-			
-			</form>
-			
+		  <div class="mb-3 col-3">
+		    <label for="product_Name" class="form-label">상품 이름</label>
+		    <input type="text" class="form-control" id="productName" name="productName" value="${dto.productName }">
+		  </div>
+		  <div class="mb-3 col-3">
+		    <label for="product_Rate" class="form-label">상품 이율</label>
+		    <input type="text" class="form-control" id="productRate" name="productRate" value="${dto.productRate }">
+		  </div>
+		  <div class="mb-3 col-3">
+		    <label for="product_Date" class="form-label">가입일</label>
+		    <input type="date" class="form-control" id="productDate" name="productDate" value="${dto.productDate }">
+		  </div>
+		  <div class="mb-3 col-3">
+		    <label for="product_Detail" class="form-label">상세 설명</label>
+		    <input type="text" class="form-control" id="productDetail" name="productDetail" value="${dto.productDetail }">
+		  </div>
+		  
+		  <button type="submit" class="btn btn-dark">상품 수정</button>
+		</form>
 		
 	
 	</div>

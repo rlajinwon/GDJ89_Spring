@@ -85,37 +85,30 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping(value = "update", method = RequestMethod.GET)
-	public ModelAndView update(ModelAndView mv) throws Exception{
-		
-
-		return mv;
-		
-		
-	}
-	
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-		public ModelAndView delete(ModelAndView mv) throws Exception{
+		public String delete(ProductDTO productDTO) throws Exception{
 		
-		return mv;
+		return "redirect:./list";
 	}
 	
-	@RequestMapping(value = "delete",method =RequestMethod.POST)
-	public ModelAndView delete(ProductDTO productDTO) throws Exception{
+
+
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public ModelAndView update(Model model,ProductDTO productDTO) throws Exception{
 		
-		int result = productService.delete(productDTO);
+		ProductDTO dto = productService.getDetail(productDTO);
+		
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:./list");
+		
+		mv.addObject("dto",dto);
+		
+		mv.setViewName("products/update");
 		
 		return mv;
 		
+		
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -127,6 +120,8 @@ public class ProductController {
 		int result = productService.update(productDTO);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:./detail");
+		
+		mv.setViewName("redirect:./list");
 		
 		return mv;
 		

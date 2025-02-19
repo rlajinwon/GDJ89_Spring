@@ -39,8 +39,7 @@
 		</c:choose>
 			
 			<a href ="/products/update?productNum=${dto.productNum}" ><button class="btn btn-dark me-md-2" type="button">수정</button></a>
-			
-		
+			<a href ="/products/delete?productNum=${dto.productNum}" ><button class="btn btn-dark me-md-2" type="button">삭제</button></a>
 	
 	</div>
 </div>
