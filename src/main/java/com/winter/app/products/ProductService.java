@@ -21,7 +21,8 @@ public class ProductService {
 		public List<ProductDTO> getList() throws Exception{
 			List<ProductDTO> ar = productDAO.getList();
 			
-			System.out.println("Service List");
+			
+			
 			return ar;
 		
 	}
@@ -29,16 +30,15 @@ public class ProductService {
 		public int add(ProductDTO productDTO) throws Exception{
 			// DAO 호출 코드 
 		
-			int result = productDAO.add(productDTO);
-			return result;
+			return productDAO.add(productDTO);
 			
 			
 			
 		}
 		public ProductDTO getDetail(ProductDTO productDTO) throws Exception{
-		ProductDTO productdto = productDAO.getDetail(productDTO);
-		System.out.println("service Detail");
-		return productdto;
+		return productDAO.getDetail(productDTO);
+		
+		
 		}
 		
 		

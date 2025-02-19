@@ -18,21 +18,26 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ProductDAO {
 	
-	
-	
-	
-	
+	@Autowired
+	private SqlSession sqlsession;
+		
 	
 	private final String NAMESPACE = "com.winter.app.products.ProductDAO.";
 	@Autowired
 	private SqlSession sqlSession;
 	
 	
+//	public  add(ProductDTO productDTO) throws Exception{
+//		
+//	}
+//	
+	
+	
 	//list 
 	
 	public List<ProductDTO> getList() throws Exception{
 				
-		return null;
+		return sqlSession.selectList(NAMESPACE+"getList");
 		
 	}
 	
@@ -49,23 +54,23 @@ public class ProductDAO {
 	
 	
 	public int add(ProductDTO productDTO)throws Exception{
-		int result = 0;
+		
+		return sqlsession.insert(NAMESPACE+"add", productDTO);
 		
 		
-		String sql = "INSERT INTO PRODUCTS "
-				+ " VALUES (NO_SEQ.NEXTVAL,?,?,?,?)" ;
+	
 		
 		
 		
 
 		
-		return result;
+		
 	}
 	
 		public ProductDTO getDetail(ProductDTO productDTO) throws Exception{
 			
 			//statement = mapper의 id 값을 넣는다.
-			return sqlSession.selectOne(NAMESPACE+"getDetail");
+			return sqlSession.selectOne(NAMESPACE+"getDetail",productDTO);
 		
 		
 			

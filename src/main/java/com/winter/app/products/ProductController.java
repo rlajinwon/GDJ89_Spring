@@ -1,11 +1,15 @@
 package com.winter.app.products;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -17,26 +21,51 @@ public class ProductController {
 	
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String getList() throws Exception{
-		System.out.println("Product List");	
-		productService.getList();
-		return "products/list";
+	public void getList(Model model) throws Exception{
+		System.out.println("Product List");
+		List<ProductDTO> ar = productService.getList();
+		
+		model.addAttribute("list", ar);
 	}
 	
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String getDetail() throws Exception{
+	public ModelAndView getDetail(ProductDTO productDTO) throws Exception{
 		System.out.println("Product Detail");
-		return "products/detail";
+		
+		productDTO = productService.getDetail(productDTO);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("dto", productDTO);
+		
+		mv.setViewName("products/detail");
+		
+		return mv;
+		
+		
+		
+		
+		
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add() throws Exception{
+	public ModelAndView add(ModelAndView mv) throws Exception{
 		
-		return "products/add";
+
+		return mv;
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add2(ProductDTO productDTO) throws Exception{
+	public ModelAndView add(ProductDTO productDTO) throws Exception{
 		
 		/**
 		 * 파라미터 처리 방법 
@@ -54,14 +83,14 @@ public class ProductController {
 		 * 
 		 */
 		
-		System.out.println("ProductName : " + productDTO.getProductName());
-		System.out.println("ProductRate : " + productDTO.getProductRate());
+		
+		int result = productService.add(productDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:./list");
 		
 		
 		
-		
-		
-		return "products/add";
+		return mv;
 	}
 		
 	
