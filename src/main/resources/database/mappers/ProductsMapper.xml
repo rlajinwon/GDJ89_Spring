@@ -21,6 +21,10 @@
  	<select id="getList" resultType="com.winter.app.products.ProductDTO">
  		SELECT * FROM PRODUCTS ORDER BY PRODUCTNUM DESC
  	</select>
+ 	
+ 	
+ 	
+ 	
  
  	
  	<insert id="add" parameterType="com.winter.app.products.ProductDTO">
