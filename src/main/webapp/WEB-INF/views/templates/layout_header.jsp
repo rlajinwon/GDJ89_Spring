@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
     <header class="container-fluid">
 		<div class="row">
 			<nav
@@ -29,9 +32,24 @@
 									<li><a class="dropdown-item" href="#">Something else
 											here</a></li>
 								</ul></li>
-							<li class="nav-item"><a class="nav-link disabled"
-								aria-disabled="true">Disabled</a></li>
-						</ul>
+
+
+
+						<c:if test="${not empty user}">
+							<li class="nav-item"><a class="nav-link"
+								href="/users/logout">로그아웃</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="/users/mypage?userName=${dto.userName}">내 정보</a></li>
+						</c:if>
+
+
+						<c:if test="${empty user}">
+							<li class="nav-item"><a class="nav-link" href="/users/login">로그인</a></li>
+							<li class="nav-item"><a class="nav-link" href="/users/join">회원가입</a></li>
+						</c:if>
+
+
+					</ul>
 						<form class="d-flex" role="search">
 							<input class="form-control me-2" type="search"
 								placeholder="Search" aria-label="Search">
