@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<c:import url="/WEB-INF/views/templates/boot_css.jsp"></c:import>
+
+</head>
+<body>
+<c:import url="/WEB-INF/views/templates/layout_header.jsp"></c:import>
+
+
+<div class = "continer-fluid my-5">
+	<div class ="row col-md-8 offset-md-2">
+
+		
+		<table class="table table-striped-columns">
+ 			<thead>
+ 				<tr>
+ 					<th>Num</th> <th>제목</th> <th>작성일</th><th>조회수</th><th>작성자</th>
+ 				</tr>
+ 			</thead>
+ 			
+ 			<tbody>
+ 			
+ 				<c:forEach items="${list}" var ="v">
+ 					<tr>
+ 						<td>${v.boardNum}</td>
+ 						<td><a href="./detail?boardNum=${v.boardNum}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">${v.boardTitle}</a></td>
+ 						<td>${v.boardDate}</td>
+ 						<td>${v.boardHit}</td>
+ 						<td>${v.userName}</td>
+ 					</tr>
+ 					
+ 				</c:forEach>
+ 					
+ 			
+ 			</tbody>
+		</table>
+		
+			
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  			<a href ="/notice/add" ><button class="btn btn-dark me-md-2" type="button">글 작성</button></a>
+		</div>
+	
+	
+	
+	</div>
+</div>
+
+
+<c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
+<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
+</body>
+</html>

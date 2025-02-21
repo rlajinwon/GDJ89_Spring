@@ -41,7 +41,6 @@
 			</div>
 
 		</div>
-
 	</div>
 
 	<c:import url="./templates/layout_footer.jsp"></c:import>

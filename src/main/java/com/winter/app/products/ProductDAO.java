@@ -76,6 +76,9 @@ public class ProductDAO {
 		public int update(ProductDTO productDTO) throws Exception{
 			return sqlsession.update(NAMESPACE+"update", productDTO);
 		}
+		
+	
+		
 	
 	
 	

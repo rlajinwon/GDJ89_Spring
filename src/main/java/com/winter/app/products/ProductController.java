@@ -94,6 +94,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 		public String delete(ProductDTO productDTO) throws Exception{
+		productService.delete(productDTO);
 		
 		return "redirect:./list";
 	}

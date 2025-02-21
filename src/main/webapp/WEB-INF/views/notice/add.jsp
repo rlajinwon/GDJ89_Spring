@@ -18,21 +18,47 @@
 
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
-
-				<div class="alert alert-secondary" role="alert">
-				${sessionScope.user.userName}
+	
+		<!-- contents 내용 작성 -->
+		
+		
+			
+			<form action="./add" method="post">
+						
+						
+						
+						
+						
+			<div class="mb-3">
+				<label for="boardTitle" class="form-label">제목
+					</label> <input type="text" name="boardTitle" class="form-control"
+					id="boardTitle" placeholder="제목 입력">
+			</div>
+			
+			
+			<div class="mb-3">
+  			<label for="boardContents" class="form-label">내용 입력</label>
+ 			 <textarea class="form-control" name="boardContents" id="boardContents" rows="10"></textarea>
 				</div>
 				
-				<div class="alert alert-secondary" role="alert">
-				${sessionScope.user.name}
-				</div>
+	
 				
-				<div class="alert alert-secondary" role="alert">
-				${sessionScope.user.email}
-				</div>
 				
-
-		</div>
+				
+				
+			  <button type="submit" class="btn btn-dark">추가</button>
+			
+			
+			</form>
+			
+		
+		
+		
+		
+		
+		
+	
+	</div>
 </div>
 
 

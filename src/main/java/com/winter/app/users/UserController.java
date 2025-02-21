@@ -66,6 +66,13 @@ public class UserController {
 	@RequestMapping(value = "logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{
 		
+		//1. user 속성 null
+		//session.setAttribute("user", null);
+		
+		//2. user 속성 삭제
+		//session.removeAttribute("user");
+		
+		//3 session 삭제(소멸) 유지시간을 0으로 세팅
 		session.invalidate();
 		
 		return"redirect:/";
@@ -74,17 +81,15 @@ public class UserController {
 		
 	}
 	
+	//리턴안하면 포워딩
 	@RequestMapping(value = "mypage", method = RequestMethod.GET)
-	public ModelAndView mypage(UserDTO userDTO) throws Exception{
+	public void mypage(UserDTO userDTO) throws Exception{
 		
-		userDTO = userService.getDetail(userDTO);
+		//1. Session에 user정보 
 		
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("dto", userDTO);
+		//2. 유저정보를 다시 조회 해서 jsp로 보내는 방법
 		
-		mv.setViewName("users/mypage");
 		
-		return mv;
 		
 	}
 	
