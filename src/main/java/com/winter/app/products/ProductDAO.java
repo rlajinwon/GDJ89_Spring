@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.winter.app.pages.Pager;
+
 
 
 
@@ -35,10 +37,14 @@ public class ProductDAO {
 	
 	//list 
 	
-	public List<ProductDTO> getList() throws Exception{
-				
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<ProductDTO> getList(Pager pager) throws Exception{
 		
+		return sqlSession.selectList(NAMESPACE+"getList",pager);
+		
+	}
+	
+	public Long getTotalCount() throws Exception{
+		return sqlsession.selectOne(NAMESPACE+"getTotalCount");
 	}
 	
 	

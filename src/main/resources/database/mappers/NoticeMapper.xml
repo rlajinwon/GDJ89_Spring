@@ -12,9 +12,32 @@
 		SELECT * FROM NOTICE WHERE BOARDNUM = #{boardNum}
 	</select>
 
-	<select id="getList" resultType="com.winter.app.notice.NoticeDTO">
-		SELECT * FROM NOTICE ORDER BY BOARDNUM DESC
+	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.notice.NoticeDTO">
+	
+							SELECT * FROM
+						(SELECT ROWNUM AS R, M.* FROM
+							(
+								SELECT *
+								FROM NOTICE
+								ORDER BY BOARDNUM DESC
+							) M
+						)
+					    WHERE R BETWEEN #{startNum} AND #{endNum}				
 	</select>
+	
+	
+	
+	 	<select id="getTotalCount" resultType="Long">
+ 	
+ 		SELECT COUNT(BOARDNUM)
+ 		FROM NOTICE
+ 	
+ 		</select>
+	
+	
+	
+
+	
 	
 	<insert id="add" parameterType="com.winter.app.notice.NoticeDTO">
 		INSERT INTO NOTICE(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT) VALUES (NOTICE_SEQ.NEXTVAL,#{boardTitle},SYSDATE,#{boardContents},0)
