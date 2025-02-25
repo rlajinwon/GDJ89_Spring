@@ -17,16 +17,29 @@
  		SELECT * FROM PRODUCTS WHERE PRODUCTNUM = #{productNum} 
  	</select>
 
- 	
- 	<select id="getList" resultType="com.winter.app.products.ProductDTO" parameterType="com.winter.app.pages.Pager">
-								SELECT * FROM
-						(SELECT ROWNUM AS R, M.* FROM
-							(
-								SELECT *
-								FROM PRODUCTS
-								WHERE
-								<!-- #을 사용하지 않음  -->
-								<if test="kind=='k1'">
+
+
+	<sql id="search">
+									WHERE PRODUCTNUM > 0 AND
+									<choose>
+										<when test="kind=='k2'">
+											PRODUCTDETAIL LIKE '%'||#{search}||'%'
+										</when>
+										<when test="kind=='k3'">
+											PRODUCTNAME LIKE '%'||#{search}||'%'
+											OR
+											PRODUCTDETAIL LIKE '%'||#{search}||'%'						
+										</when>
+										<otherwise>
+											PRODUCTNAME LIKE '%'||#{search}||'%'
+										</otherwise>
+									
+									</choose>
+								
+				
+				
+				
+					<!-- 			<if test="kind=='k1'">
 								PRODUCTNAME LIKE '%'||#{search}||'%'
 								</if>
 								<if test="kind=='k2'">
@@ -36,7 +49,20 @@
 								PRODUCTNAME LIKE '%'||#{search}||'%'
 								OR
 								PRODUCTDETAIL LIKE '%'||#{search}||'%'								
-								</if>
+								</if> -->
+	</sql>
+
+
+ 	
+ 	<select id="getList" resultType="com.winter.app.products.ProductDTO" parameterType="com.winter.app.pages.Pager">
+											SELECT * FROM
+							(SELECT ROWNUM R, M.* FROM
+								(
+									SELECT * 
+									FROM PRODUCTS
+								
+								<include refid="search"></include>
+								
 								ORDER BY PRODUCTNUM DESC
 							) M
 						)
@@ -45,10 +71,9 @@
  	</select>
  	
  	
- 	<select id="getTotalCount" resultType="Long" >
- 	
- 		SELECT COUNT(PRODUCTNUM)
- 		FROM PRODUCTS
+ 	<select id="getTotalCount" parameterType="com.winter.app.pages.Pager" resultType="Long" >
+						 	SELECT COUNT(PRODUCTNUM) FROM PRODUCTS
+						  	<include refid="search"></include>
  	
  	</select>
  	

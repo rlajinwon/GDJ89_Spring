@@ -34,7 +34,7 @@
 					id="passWord" placeholder="비밀번호 입력하세요">
 			</div>
 			
-					  <button type="submit" class="btn btn-dark">로그인</button>
+					  <button id="btn1" type="button" class="btn btn-dark">로그인</button>
 					
 			
 				</form>
@@ -46,5 +46,8 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
+
+
+<script src="/resources/js/login.js"></script>
 </body>
 </html>
