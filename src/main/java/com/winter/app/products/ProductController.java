@@ -98,7 +98,7 @@ public class ProductController {
 	
 	
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 		public String delete(ProductDTO productDTO) throws Exception{
 		productService.delete(productDTO);
 		

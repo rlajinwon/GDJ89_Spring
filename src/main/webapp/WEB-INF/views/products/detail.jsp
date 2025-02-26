@@ -39,6 +39,19 @@
 		</c:choose>
 		
 		
+		<div>
+				<form id="frm" action="/test" method="">
+					<input type="hidden" name="productNum" value="${dto.productNum}">
+					<button type="button" id="btn1">수정</button> 
+					<button type="button" id="btn2">삭제</button> 
+
+				</form>
+		</div>
+
+
+
+
+<!-- 
 		<div class="d-flex gap-3">
     <a href="/products/update?productNum=${dto.productNum}">
         <button class="btn btn-dark" type="button">수정</button>
@@ -47,7 +60,7 @@
     <a href="/products/delete?productNum=${dto.productNum}">
         <button class="btn btn-dark" type="button">삭제</button>
     </a>
-</div>
+</div> -->
 
 
 
@@ -56,7 +69,9 @@
 
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
-<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
+<c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>\
+<script src="../../../resources/js/detail.js"></script>
+
 </body>
 </html>
 
