@@ -6,6 +6,7 @@
 const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const frm = document.getElementById("frm");
+const btn3 = document.getElementById("btn3");
 
 
 btn1.addEventListener("click",function(){
@@ -31,3 +32,10 @@ btn2.addEventListener("click",function(){
     }
 
 });
+
+btn3.addEventListener("click", function(){
+
+    console.log("댓글");
+    frm.action="/qna/add";
+    frm.submit();
+})

@@ -5,6 +5,7 @@ const productDate = document.getElementById("productDate");
 
 const product_btn = document.getElementById("product_btn");
 
+
 product_btn.addEventListener("click",function(){
 
     if(productName.value==""){

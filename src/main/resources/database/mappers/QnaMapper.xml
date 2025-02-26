@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  <mapper namespace="com.winter.app.qna.QnaDAO">
+
+	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.qna.QnaDTO">
+				SELECT * FROM
+						(SELECT ROWNUM AS R, M.* FROM
+							(
+								SELECT *
+								FROM QNA
+								ORDER BY BOARDNUM DESC
+							) M
+						)
+					    WHERE R BETWEEN #{startNum} AND #{endNum}
+
+	</select>
+
+	<select id="getDetail" resultType="com.winter.app.qna.QnaDTO">
+
+  			SELECT * FROM QNA WHERE BOARDNUM = #{boardNum}
+  			</select>
+  			
+  		
+	 	<select id="getTotalCount" resultType="Long">
+ 		SELECT COUNT(BOARDNUM)
+ 		FROM QNA
+ 		</select>
+	
+		
+	<insert id="add" parameterType="com.winter.app.qna.QnaDTO">
+		INSERT INTO QNA(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT,USERNAME,BOARDREF,BOARDSTEP,BOARDDEPTH) VALUES (NOTICE_SEQ.NEXTVAL,#{boardTitle},SYSDATE,#{boardContents},#{boardHit},#{userName},0,0,0)
+	</insert>
+		
+		
+			<delete id="delete" parameterType="com.winter.app.qna.QnaDTO">
+		DELETE FROM QNA WHERE BOARDNUM = #{boardNum}
+	</delete>
+		
+		<update id="update" parameterType="com.winter.app.qna.QnaDTO">
+		UPDATE QNA SET BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum}
+	</update>
+	
+		
+	<update id="updateHit" parameterType="com.winter.app.qna.QnaDTO">
+    UPDATE QNA
+    SET BOARDHIT = BOARDHIT + 1
+    WHERE BOARDNUM = #{boardNum}
+	</update>
+		
+		
+  			
+  			
+  			
+  			
+  </mapper>
