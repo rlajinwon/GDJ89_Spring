@@ -18,7 +18,7 @@
 	<div class ="row col-md-8 offset-md-2">
 				
 			
-			<form action="./add" method="post">
+			<form id="product_add" action="./add" method="post">
 						
 			<div class="mb-3">
 				<label for="productName" class="form-label">상품명
@@ -42,7 +42,7 @@
  			 <textarea class="form-control" name="productDetail" id="productDetail" rows="10"></textarea>
 				</div>
 				
-			  <button type="submit" class="btn btn-dark">Submit</button>
+			  <button id="product_btn" type="button" class="btn btn-dark">Submit</button>
 			
 			
 			</form>
@@ -54,5 +54,6 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
+<script src="/resources/js/add.js"></script>
 </body>
 </html>

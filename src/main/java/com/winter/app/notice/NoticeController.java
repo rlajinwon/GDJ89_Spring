@@ -70,7 +70,7 @@ public class NoticeController {
 		
 	}
 	
-	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String delete(NoticeDTO noticeDTO) throws Exception{
 		
 		noticeService.delete(noticeDTO);

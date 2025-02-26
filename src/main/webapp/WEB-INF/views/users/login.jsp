@@ -20,7 +20,7 @@
 	<div class ="row col-md-8 offset-md-2">
 
 
-				<form action="./login" method="post">
+				<form id="login_form" action="./login" method="post">
 						
 			<div class="mb-3">
 				<label for="userName" class="form-label">아이디

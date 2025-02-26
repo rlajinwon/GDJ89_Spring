@@ -77,5 +77,6 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
+<script src="./resources/js/list.js"></script>
 </body>
 </html>
