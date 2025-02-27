@@ -1,8 +1,9 @@
-package com.winter.app.qna;
+package com.winter.app.boards;
 
 import java.sql.Date;
 
-public class QnaDTO {
+public class BoardDTO {
+
 	
 	private Long boardNum;
 	private String boardTitle;
@@ -10,9 +11,8 @@ public class QnaDTO {
 	private String boardContents;
 	private Long boardHit;
 	private String userName;
-	private Long boardRef;
-	private Long boardStep;
-	private Long boardDepth;
+	
+	
 	
 	
 	
@@ -52,25 +52,6 @@ public class QnaDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Long getBoardRef() {
-		return boardRef;
-	}
-	public void setBoardRef(Long boardRef) {
-		this.boardRef = boardRef;
-	}
-	public Long getBoardStep() {
-		return boardStep;
-	}
-	public void setBoardStep(Long boardStep) {
-		this.boardStep = boardStep;
-	}
-	public Long getBoardDepth() {
-		return boardDepth;
-	}
-	public void setBoardDepth(Long boardDepth) {
-		this.boardDepth = boardDepth;
-	}
-	
 	
 	
 	

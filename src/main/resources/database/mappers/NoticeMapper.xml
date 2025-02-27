@@ -7,12 +7,12 @@
   
   <mapper namespace="com.winter.app.notice.NoticeDAO">
   
-	<select id="getDetail" resultType="com.winter.app.notice.NoticeDTO" parameterType="com.winter.app.notice.NoticeDTO">
+	<select id="getDetail" resultType="com.winter.app.boards.notice.NoticeDTO" parameterType="com.winter.app.boards.notice.NoticeDTO">
 	
 		SELECT * FROM NOTICE WHERE BOARDNUM = #{boardNum}
 	</select>
 
-	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.notice.NoticeDTO">
+	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.boards.notice.NoticeDTO">
 	
 							SELECT * FROM
 						(SELECT ROWNUM AS R, M.* FROM
@@ -39,19 +39,19 @@
 
 	
 	
-	<insert id="add" parameterType="com.winter.app.notice.NoticeDTO">
+	<insert id="add" parameterType="com.winter.app.boards.notice.NoticeDTO">
 		INSERT INTO NOTICE(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT) VALUES (NOTICE_SEQ.NEXTVAL,#{boardTitle},SYSDATE,#{boardContents},0)
 	</insert>
 	
-	<delete id="delete" parameterType="com.winter.app.notice.NoticeDTO">
+	<delete id="delete" parameterType="com.winter.app.boards.notice.NoticeDTO">
 		DELETE FROM NOTICE WHERE BOARDNUM = #{boardNum}
 	</delete>
 
-	<update id="update" parameterType="com.winter.app.notice.NoticeDTO">
+	<update id="update" parameterType="com.winter.app.boards.notice.NoticeDTO">
 		UPDATE NOTICE SET BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum}
 	</update>
 	
-	<update id="updateHit" parameterType="com.winter.app.notice.NoticeDTO">
+	<update id="updateHit" parameterType="com.winter.app.boards.notice.NoticeDTO">
     UPDATE NOTICE
     SET BOARDHIT = BOARDHIT + 1
     WHERE BOARDNUM = #{boardNum}

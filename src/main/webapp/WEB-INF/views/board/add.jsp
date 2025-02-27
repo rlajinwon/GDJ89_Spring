@@ -20,19 +20,43 @@
 	<div class ="row col-md-8 offset-md-2">
 	
 		<!-- contents 내용 작성 -->
-
-        <form action="./add" method="post">
-		 <div class="mt-2 p-3 bg-body rounded shadow-sm">
-     
-   			  <div class="mb-3">
-  			<label for="boardContents" class="form-label">댓글</label>
- 			 <textarea class="form-control" name="boardContents" id="boardContents" rows="1"></textarea>
+		
+		
+			
+			<form action="" method="post">
+						
+						
+						
+						
+						
+			<div class="mb-3">
+				<label for="boardTitle" class="form-label">제목
+					</label> <input type="text" name="boardTitle" class="form-control"
+					id="boardTitle" placeholder="제목 입력">
+			</div>
+			
+			
+			<div class="mb-3">
+  			<label for="boardContents" class="form-label">내용 입력</label>
+ 			 <textarea class="form-control" name="boardContents" id="boardContents" rows="10"></textarea>
 				</div>
 				
-				  <button type="submit" class="btn btn-dark">작성</button>
+	
+				
+				
+				
+				
+			  <button type="submit" class="btn btn-dark">추가</button>
+			
+			
+			</form>
+			
 		
-    </div>
-</form>
+		
+		
+		
+		
+		
 	
 	</div>
 </div>

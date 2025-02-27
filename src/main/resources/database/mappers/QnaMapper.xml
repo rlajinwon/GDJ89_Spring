@@ -5,10 +5,19 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   
-  <mapper namespace="com.winter.app.qna.QnaDAO">
+  <mapper namespace="com.winter.app.boards.qna.QnaDAO">
 
-	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.qna.QnaDTO">
-				SELECT * FROM
+	<select id="getDetail" resultType="com.winter.app.boards.qna.QnaDTO" parameterType="com.winter.app.boards.qna.QnaDTO">
+	
+		SELECT * FROM QNA WHERE BOARDNUM = #{boardNum}
+	</select>
+
+	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.boards.qna.QnaDTO">
+	
+	<!--SELECT * FROM QNA ORDER BY BOARDREF DESC ,BOARDSTEP ASC  -->
+	
+	
+							SELECT * FROM
 						(SELECT ROWNUM AS R, M.* FROM
 							(
 								SELECT *
@@ -16,45 +25,57 @@
 								ORDER BY BOARDNUM DESC
 							) M
 						)
-					    WHERE R BETWEEN #{startNum} AND #{endNum}
-
+					    WHERE R BETWEEN #{startNum} AND #{endNum}				
 	</select>
-
-	<select id="getDetail" resultType="com.winter.app.qna.QnaDTO">
-
-  			SELECT * FROM QNA WHERE BOARDNUM = #{boardNum}
-  			</select>
-  			
-  		
+	
+	
+	
 	 	<select id="getTotalCount" resultType="Long">
+ 	
  		SELECT COUNT(BOARDNUM)
  		FROM QNA
+ 	
  		</select>
 	
+	<insert id="reply" parameterType="com.winter.app.boards.qna.QnaDTO">
+					INSERT INTO QNA 
+  			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
+  			VALUES
+  			(NOTICE_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, #{boardRef},#{boardStep},#{boardDepth})	
 		
-	<insert id="add" parameterType="com.winter.app.qna.QnaDTO">
-		INSERT INTO QNA(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT,USERNAME,BOARDREF,BOARDSTEP,BOARDDEPTH) VALUES (NOTICE_SEQ.NEXTVAL,#{boardTitle},SYSDATE,#{boardContents},#{boardHit},#{userName},0,0,0)
 	</insert>
-		
-		
-			<delete id="delete" parameterType="com.winter.app.qna.QnaDTO">
+	
+	<update id="updateStep" parameterType="com.winter.app.boards.qna.QnaDTO">
+	
+		UPDATE QNA SET BOARDSTEP=BOARDSTEP+1 WHERE BOARDREF =#{boardRef} AND BOARDSTEP>#{boardStep}
+	
+	</update>
+	
+	
+	
+	
+	
+	
+	
+	<insert id="add" parameterType="com.winter.app.boards.qna.QnaDTO">
+		INSERT INTO QNA(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT,USERNAME,BOARDREF,BOARDSTEP,BOARDDEPTH)
+		VALUES (NOTICE_SEQ.NEXTVAL,#{boardTitle},SYSDATE,#{boardContents},0,'FFF',NOTICE_SEQ.CURRVAL,0,0)
+	</insert>
+	
+	<delete id="delete" parameterType="com.winter.app.boards.qna.QnaDTO">
 		DELETE FROM QNA WHERE BOARDNUM = #{boardNum}
 	</delete>
-		
-		<update id="update" parameterType="com.winter.app.qna.QnaDTO">
+
+	<update id="update" parameterType="com.winter.app.boards.qna.QnaDTO">
 		UPDATE QNA SET BOARDTITLE = #{boardTitle}, BOARDCONTENTS = #{boardContents} WHERE BOARDNUM = #{boardNum}
 	</update>
 	
-		
-	<update id="updateHit" parameterType="com.winter.app.qna.QnaDTO">
+	<update id="updateHit" parameterType="com.winter.app.boards.qna.QnaDTO">
     UPDATE QNA
     SET BOARDHIT = BOARDHIT + 1
     WHERE BOARDNUM = #{boardNum}
-	</update>
-		
-		
-  			
-  			
-  			
-  			
+</update>
+
+	
+  	
   </mapper>

@@ -19,6 +19,9 @@
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
 	
+	
+	<h1>${kind} Detail Page</h1>
+	
 		<table class="table table-dark ">
 			<thead>
 				<tr >
@@ -48,6 +51,12 @@
 					<input type="hidden" name="boardNum" value="${dto.boardNum}">
 					<button type="button" id="btn1">수정</button> 
 					<button type="button" id="btn2">삭제</button> 
+					<button type="button" id="btn3">답글</button> 
+					
+
+
+
+
 
 				</form>
 

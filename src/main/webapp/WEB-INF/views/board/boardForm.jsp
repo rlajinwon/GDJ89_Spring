@@ -19,44 +19,31 @@
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
 	
-		<!-- contents 내용 작성 -->
-		
-		
-			
-			<form action="./add" method="post">
-						
-						
-						
-						
-						
-			<div class="mb-3">
-				<label for="boardTitle" class="form-label">제목
-					</label> <input type="text" name="boardTitle" class="form-control"
-					id="boardTitle" placeholder="제목 입력">
-			</div>
-			
-			
-			<div class="mb-3">
-  			<label for="boardContents" class="form-label">내용 입력</label>
- 			 <textarea class="form-control" name="boardContents" id="boardContents" rows="10"></textarea>
-				</div>
+
+			<h1>${kind}</h1>
 				
+			<form action="" method="post">
+		
+			<input type="hidden" name="boardNum" value="${dto.boardNum}">
+			
+		  <div class="mb-3">
+		    <label for="boardTitle" class="form-label">제목</label>
+		    <input type="text" class="form-control" id="boardTitle" name="boardTitle" value="${dto.boardTitle}">
+		  </div>
+		  <div class="mb-3">
+		    <label for="boardContents" class="form-label">내용</label>
+		     <textarea class="form-control" name="boardContents" id="boardContents" rows="10">${dto.boardContents}</textarea>
+		  </div>
 	
-				
-				
-				
-				
-			  <button type="submit" class="btn btn-dark">추가</button>
-			
-			
-			</form>
-			
+		  
+		  <button type="submit" class="btn btn-dark">글작성</button>
+		</form>
 		
 		
 		
 		
-		
-		
+
+
 	
 	</div>
 </div>

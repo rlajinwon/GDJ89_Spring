@@ -20,6 +20,9 @@
 	<div class ="row col-md-8 offset-md-2">
 
 		
+		
+			<h1>${kind} List Page</h1>
+		
 		<table class="table table-striped-columns">
  			<thead>
  				<tr>
@@ -32,7 +35,12 @@
  				<c:forEach items="${list}" var ="v">
  					<tr>
  						<td>${v.boardNum}</td>
- 						<td><a href="./detail?boardNum=${v.boardNum}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">${v.boardTitle}</a></td>
+ 						<td><a href="./detail?boardNum=${v.boardNum}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
+ 							<c:catch>
+ 							<c:forEach begin="1" end="${v.boardDepth}">--</c:forEach>
+ 							</c:catch>
+ 							 ${v.boardTitle}
+ 						</a></td>
  						<td>${v.boardDate}</td>
  						<td>${v.boardHit}</td>
  						<td>${v.userName}</td>
@@ -66,7 +74,7 @@
 		
 			
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-  			<a href ="/notice/add" ><button class="btn btn-dark me-md-2" type="button">글 작성</button></a>
+  			<a href ="./add" ><button class="btn btn-dark me-md-2" type="button">글 작성</button></a>
 		</div>
 	
 	

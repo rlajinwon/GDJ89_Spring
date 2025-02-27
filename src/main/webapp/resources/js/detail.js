@@ -33,9 +33,11 @@ btn2.addEventListener("click",function(){
 
 });
 
-btn3.addEventListener("click", function(){
-
-    console.log("댓글");
-    frm.action="/qna/add";
+btn3.addEventListener("click",function(){
+    frm.action="./reply";
     frm.submit();
-})
+
+
+});
+
+
