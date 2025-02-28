@@ -19,8 +19,8 @@
 <div class = "continer-fluid my-5">
 	<div class ="row col-md-8 offset-md-2">
 	
-	
-		<form action="./join" method="post">
+														<!-- 파일 올릴때 적어줘야함 -->
+		<form action="./join" method="post" enctype="multipart/form-data"> 
 						
 			<div class="mb-3">
 				<label for="userName" class="form-label">아이디
@@ -51,6 +51,13 @@
 					</label> <input type="text" name="email" class="form-control"
 					id="email" placeholder="이메일을 입력하세요">
 			</div>
+			
+									<div class="mb-3">
+				<label for="profile" class="form-label">profile
+					</label> <input type="file" name="profile" class="form-control"
+					id="profile" placeholder="">
+			</div>
+		
 		
 				
 			  <button type="submit" class="btn btn-dark">회원가입</button>

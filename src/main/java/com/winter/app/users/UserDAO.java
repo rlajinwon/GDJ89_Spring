@@ -16,6 +16,10 @@ public class UserDAO {
 	private final String NAMESPACE = "com.winter.app.users.UserDAO.";
 
 	
+	public int upload(UserFileDTO userFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"upload", userFileDTO);
+	}
+	
 	//회원가입
 	public int join(UserDTO userDTO) throws Exception{
 		

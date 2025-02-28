@@ -38,16 +38,21 @@
  		</select>
 	
 	<insert id="reply" parameterType="com.winter.app.boards.qna.QnaDTO">
-					INSERT INTO QNA 
+		INSERT INTO QNA 
   			(BOARDNUM, BOARDTITLE, BOARDDATE, BOARDCONTENTS, BOARDHIT, USERNAME, BOARDREF, BOARDSTEP, BOARDDEPTH)
   			VALUES
-  			(NOTICE_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, #{boardRef},#{boardStep},#{boardDepth})	
+  			(NOTICE_SEQ.NEXTVAL, #{boardTitle}, sysdate, #{boardContents}, 0, #{userName}, 
+  			(SELECT BOARDREF FROM QNA BOARDNUM=#{boardNum}),
+  			(SELECT BOARDSTEP+1 FROM QNA BOARDNUM=#{boardNum}),
+  			(SELECT BOARDDEPTH+1 FROM QNA BOARDNUM=#{boardNum)})	
 		
 	</insert>
 	
 	<update id="updateStep" parameterType="com.winter.app.boards.qna.QnaDTO">
-	
-		UPDATE QNA SET BOARDSTEP=BOARDSTEP+1 WHERE BOARDREF =#{boardRef} AND BOARDSTEP>#{boardStep}
+		<!-- 부모의 글 번호 -->
+		UPDATE QNA SET BOARDSTEP=BOARDSTEP+1 WHERE BOARDREF =(SELECT BOARDREF FROM QNA WHERE BOARDNUM=#{boardNum})
+		 AND
+		 BOARDSTEP>(SELECT BOARDSTEP FROM QNA WHERE BOARDNUM=#{boardNum})
 	
 	</update>
 	

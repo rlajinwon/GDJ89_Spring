@@ -31,6 +31,11 @@
 				${sessionScope.user.email}
 				</div>
 				
+				<div class="alert alert-secondary" role="alert">
+					<img alt="" src="/resources/images/profiles/${user.userFileDTO.fileName}">
+				</div>
+				
+				
 
 		</div>
 </div>

@@ -8,14 +8,53 @@
   
   <mapper namespace="com.winter.app.users.UserDAO">
   
+  
+  <!-- 파일 저장 -->
+	<insert id="upload" parameterType="com.winter.app.users.UserFileDTO">
+	INSERT INTO PROFILE
+  		VALUES(#{userName},#{fileName},#{oldName})
+	</insert>  
+  
+  
+  
+  
   <insert id="join" parameterType="com.winter.app.users.UserDTO">
   	INSERT INTO USERS VALUES(#{userName},#{passWord},#{name},#{phone},#{email})
   </insert>
   
 	
-	<select id="getDetail" resultType="com.winter.app.users.UserDTO" parameterType="com.winter.app.users.UserDTO">
-		SELECT * FROM USERS WHERE USERNAME = #{userName}
+	
+	
+	<select id="getDetail" resultMap="getDetailResult" parameterType="com.winter.app.users.UserDTO">
+	
+					SELECT *
+						FROM USERS U
+							LEFT OUTER JOIN
+							PROFILE P
+							ON U.USERNAME = P.USERNAME
+						WHERE U.USERNAME =#{userName}
+						
+		
 	</select>
+	
+	<resultMap type="com.winter.app.users.UserDTO" id="getDetailResult">
+	<!-- PK colum:컬럼명, property : setter의 이름-->
+	<id column="USERNAME" property="userName"/>
+	
+	<!-- 그 외 나머지 colum:컬럼명, property : setter의 이름-->
+	<result column="PASSWORD" property="passWord"/>
+	<result column="NAME" property="name"/>
+	<result column="PHONE" property="phone"/>
+	<result column="EMAIL" property="email"/>
+	
+	<!-- 1 : 1 -->
+	<association property="userFileDTO" javaType="com.winter.app.users.UserFileDTO">
+		<result column="FILENAME" property="fileName"/>
+		<result column="OLDNAME" property="oldName"/>
+	
+	</association>
+	
+	</resultMap>
 	
 	
 	

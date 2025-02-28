@@ -1,11 +1,19 @@
 package com.winter.app.users;
 
+import java.io.File;
+import java.util.Calendar;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.winter.app.files.FileManger;
 import com.winter.app.products.ProductDTO;
 
 @Service
@@ -13,11 +21,36 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	@Autowired
+	private FileManger fileManger;
 	
 	
-	public int join(UserDTO userDTO) throws Exception{
+	//servletContext 어플리케이션 내장객체 
+	public int join(UserDTO userDTO,MultipartFile profile,ServletContext context) throws Exception{
+		int result = userDAO.join(userDTO);
 		
-		return userDAO.join(userDTO);
+		if(profile.isEmpty()) {
+			return result;
+		}
+		
+		//1. 어디에 저장 할 것인가? ? 
+		
+		String path = context.getRealPath("/resources/images/profiles/");
+		
+		System.out.println(path);
+		
+		String f = fileManger.fileSave(path, profile);
+		
+		
+		UserFileDTO userFileDTO = new UserFileDTO();
+		userDTO.setUserName(userDTO.getUserName());
+		userFileDTO.setFileName(f);
+		userFileDTO.setOldName(profile.getOriginalFilename());
+		
+		
+		result = userDAO.upload(userFileDTO);
+		
+		return result;//userDAO.join(userDTO);
 		
 		
 	}

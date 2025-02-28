@@ -11,6 +11,7 @@
 </head>
 <body>
 	<c:import url="./templates/layout_header.jsp"></c:import>
+	<img alt="" src="">
 	
 	<div class="continer-fluid my-5">
 		<div class="row col-md-8 offset-md-2">
