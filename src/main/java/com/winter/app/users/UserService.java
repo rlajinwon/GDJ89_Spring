@@ -43,7 +43,7 @@ public class UserService {
 		
 		
 		UserFileDTO userFileDTO = new UserFileDTO();
-		userDTO.setUserName(userDTO.getUserName());
+		userFileDTO.setUserName(userDTO.getUserName());
 		userFileDTO.setFileName(f);
 		userFileDTO.setOldName(profile.getOriginalFilename());
 		
