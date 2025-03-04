@@ -37,10 +37,11 @@
 	
 	
 		<div id = "files">
-
-	
+			
 			<button type="button" id="add">파일추가</button>
+		
 		</div>
+		
 	
 		  
 		  <button type="submit" class="btn btn-dark">글작성</button>
