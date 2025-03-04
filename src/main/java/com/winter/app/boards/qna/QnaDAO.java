@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.winter.app.boards.BoardDAO;
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.boards.notice.NoticeDTO;
 import com.winter.app.pages.Pager;
 
@@ -48,6 +49,11 @@ public class QnaDAO implements BoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"add", boardDTO);
 	}
+	
+	public int addFile(BoardFileDTO boardFileDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"addFile",boardFileDTO);
+	}
+	
 
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {

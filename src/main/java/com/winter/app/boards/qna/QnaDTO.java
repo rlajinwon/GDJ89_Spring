@@ -1,8 +1,10 @@
 package com.winter.app.boards.qna;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardFileDTO;
 
 public class QnaDTO extends BoardDTO{
 	
@@ -11,7 +13,16 @@ public class QnaDTO extends BoardDTO{
 	private Long boardStep;
 	private Long boardDepth;
 	
+	private List<BoardFileDTO> boardFileDTO;
 	
+	
+	public List<BoardFileDTO> getBoardFileDTO() {
+		return boardFileDTO;
+	}
+	
+	public void setBoardFileDTO(List<BoardFileDTO> boardFileDTO) {
+		this.boardFileDTO = boardFileDTO;
+	}
 	
 	public Long getBoardRef() {
 		return boardRef;

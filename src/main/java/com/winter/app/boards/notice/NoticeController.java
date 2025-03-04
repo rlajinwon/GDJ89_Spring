@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.BoardDTO;
@@ -26,7 +27,7 @@ public class NoticeController {
 	
 	@ModelAttribute("kind")					// 모든메서드에 model에 이 값을 넣어라 jsp를 통해 Notice라는 값을 뿌려준다 
 	public String getKind() {
-		return "Notice";
+		return "notice";
 		
 	}
 	
@@ -81,12 +82,13 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(NoticeDTO boardDTO,HttpSession session) throws Exception{
+	public String add(NoticeDTO boardDTO,HttpSession session,MultipartFile[] attaches) throws Exception{
+		
 		
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		boardDTO.setUserName(userDTO.getName());
-		int result = noticeService.add(boardDTO);
+		int result = noticeService.add(boardDTO,session,attaches);
 		
 		return "redirect:./list";
 		

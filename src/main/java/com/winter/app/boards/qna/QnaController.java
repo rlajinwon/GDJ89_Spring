@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.BoardDTO;
@@ -26,7 +27,7 @@ public class QnaController {
 	
 	@ModelAttribute("kind")					// 모든메서드에 model에 이 값을 넣어라 
 	public String getKind() {
-		return "QnA";
+		return "qna";
 		
 	}
 	
@@ -82,12 +83,12 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public String add(QnaDTO boardDTO,HttpSession session) throws Exception{
+	public String add(QnaDTO boardDTO,HttpSession session,MultipartFile[] attaches) throws Exception{
 		
 		
 		UserDTO userDTO = (UserDTO)session.getAttribute("user");
 		boardDTO.setUserName(userDTO.getName());
-		int result = qnaService.add(boardDTO);
+		int result = qnaService.add(boardDTO,session,attaches);
 		
 		return "redirect:./list";
 		

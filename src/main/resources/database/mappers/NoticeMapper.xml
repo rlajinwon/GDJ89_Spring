@@ -7,10 +7,34 @@
   
   <mapper namespace="com.winter.app.notice.NoticeDAO">
   
-	<select id="getDetail" resultType="com.winter.app.boards.notice.NoticeDTO" parameterType="com.winter.app.boards.notice.NoticeDTO">
+	<select id="getDetail" resultMap="getDetailResult" parameterType="com.winter.app.boards.notice.NoticeDTO">
 	
-		SELECT * FROM NOTICE WHERE BOARDNUM = #{boardNum}
+										SELECT *
+											FROM NOTICE N
+												LEFT OUTER JOIN 
+												NOTICEFILES NF
+												USING(BOARDNUM)
+											WHERE BOARDNUM = #{boardNum}
+
 	</select>
+	
+	<resultMap type="com.winter.app.boards.notice.NoticeDTO" id="getDetailResult">
+    <!-- NoticeDTO의 기본 필드 -->
+    <id column="BOARDNUM" property="boardNum"/>
+    <result column="BOARDTITLE" property="boardTitle"/>
+    <result column="BOARDDATE" property="boardDate"/>
+    <result column="BOARDCONTENTS" property="boardContents"/>
+    <result column="BOARDHIT" property="boardHit"/>
+    <result column="USERNAME" property="userName"/>
+    
+    <!-- 1:N 관계 (boardFileDTO는 List 타입) -->
+    <collection property="boardFileDTO" javaType="java.util.List" ofType="com.winter.app.boards.BoardFileDTO">
+        <id column="FILENUM" property="fileNum"/>
+        <result column="FILENAME" property="fileName"/>
+        <result column="OLDNAME" property="oldName"/>
+    </collection>
+</resultMap>
+
 
 	<select id="getList" parameterType="com.winter.app.pages.Pager" resultType="com.winter.app.boards.notice.NoticeDTO">
 	
@@ -36,12 +60,24 @@
 	
 	
 	
+	<insert id="add" parameterType="com.winter.app.boards.notice.NoticeDTO">
+		<!-- 메인쿼리 실행 전 (Before) SELECTKEY의 결과물인 Long 타입의 값을 NoticeDTO boardNum에 넣어라 -->
+		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
+			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+	
+		INSERT INTO NOTICE(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT) VALUES
+		 	<!-- 시퀀스를 실행 하는 것이 아닌 boardNum 값을 가져 옴  -->
+		 (#{boardNum},#{boardTitle},SYSDATE,#{boardContents},0)
+	</insert>
+
+	<insert id="addFile" parameterType="com.winter.app.boards.BoardFileDTO">
+		INSERT INTO NOTICEFILES (FILENUM,FILENAME,OLDNAME,BOARDNUM)
+		VALUES(FILES_SEQ.NEXTVAL, #{fileName}, #{oldName},#{boardNum})
+	</insert>
 
 	
-	
-	<insert id="add" parameterType="com.winter.app.boards.notice.NoticeDTO">
-		INSERT INTO NOTICE(BOARDNUM,BOARDTITLE,BOARDDATE,BOARDCONTENTS,BOARDHIT) VALUES (NOTICE_SEQ.NEXTVAL,#{boardTitle},SYSDATE,#{boardContents},0)
-	</insert>
+
 	
 	<delete id="delete" parameterType="com.winter.app.boards.notice.NoticeDTO">
 		DELETE FROM NOTICE WHERE BOARDNUM = #{boardNum}

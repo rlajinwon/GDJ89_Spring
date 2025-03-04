@@ -47,7 +47,7 @@
 	<result column="PHONE" property="phone"/>
 	<result column="EMAIL" property="email"/>
 	
-	<!-- 1 : 1 -->
+	<!-- 1 : 1 property = "setter의 이름" javaType = "datatype" -->
 	<association property="userFileDTO" javaType="com.winter.app.users.UserFileDTO">
 		<result column="FILENAME" property="fileName"/>
 		<result column="OLDNAME" property="oldName"/>

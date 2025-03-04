@@ -42,6 +42,22 @@
 
 		
 		</table>
+		
+		
+		<div>
+		<c:forEach items="${dto.boardFileDTO}" var ="f">
+			<a href="/resources/images/${kind}/${f.fileName}">${f.oldName}</a>	
+		</c:forEach>
+		
+		
+		</div>
+		
+		
+		
+		
+		
+		
+		
 		<div class="alert alert-dark" role="alert" style="min-height: 60vh">
 		  ${dto.boardContents}
 		</div>
@@ -53,8 +69,6 @@
 					<button type="button" id="btn2">삭제</button> 
 					<button type="button" id="btn3">답글</button> 
 					
-
-
 
 
 

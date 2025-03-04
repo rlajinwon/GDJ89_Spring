@@ -22,7 +22,7 @@
 
 			<h1>${kind}</h1>
 				
-			<form action="" method="post">
+			<form action="" method="post" enctype="multipart/form-data">
 		
 			<input type="hidden" name="boardNum" value="${dto.boardNum}">
 			
@@ -34,6 +34,13 @@
 		    <label for="boardContents" class="form-label">내용</label>
 		     <textarea class="form-control" name="boardContents" id="boardContents" rows="10">${dto.boardContents}</textarea>
 		  </div>
+	
+	
+		<div id = "files">
+
+	
+			<button type="button" id="add">파일추가</button>
+		</div>
 	
 		  
 		  <button type="submit" class="btn btn-dark">글작성</button>
@@ -49,6 +56,7 @@
 </div>
 
 
+<script src="/resources/js/files/fileManger.js"></script>
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>

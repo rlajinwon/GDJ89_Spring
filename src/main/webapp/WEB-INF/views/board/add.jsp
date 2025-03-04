@@ -41,6 +41,25 @@
  			 <textarea class="form-control" name="boardContents" id="boardContents" rows="10"></textarea>
 				</div>
 				
+				
+				
+											<div class="mb-3">
+				<label for="profile" class="form-label">첨부파일
+					</label> <input type="file" name="attaches" class="form-control"
+					id="profile" placeholder="">
+			</div>
+					
+										<div class="mb-3">
+				<label for="profile" class="form-label">첨부파일
+					</label> <input type="file" name="attaches" class="form-control"
+					id="profile" placeholder="">
+			</div>
+					
+										<div class="mb-3">
+				<label for="profile" class="form-label">첨부파일
+					</label> <input type="file" name="attaches" class="form-control"
+					id="profile" placeholder="">
+			</div>
 	
 				
 				
