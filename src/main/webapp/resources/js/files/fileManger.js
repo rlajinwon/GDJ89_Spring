@@ -2,28 +2,24 @@ const add = document.getElementById("add");
 const files = document.getElementById("files");
 const del = document.getElementsByClassName("del");
 
-for(let d of del){
+let count = files.getAttribute("data-files-size")
 
-    d.addEventListener("click",function(){
+count++;
 
-        console.log("del");
-
-    })
-    
-
-}
-
-
-
+files.addEventListener('click',function(e){
+    if(e.target.classList.contains('del')){
+        e.target.parentElement.remove();
+        count--;
+        
+    }
+})
 
 
-
-let count = 0;
 
 
 add.addEventListener("click",function(){
 
-    if(count > 4){
+    if(count > 5){
         alert('파일은 5개 까지');
         return;
     }
@@ -81,6 +77,7 @@ add.addEventListener("click",function(){
     label.innerText = 'X';
 
     label.type="button";
+
 
 
     

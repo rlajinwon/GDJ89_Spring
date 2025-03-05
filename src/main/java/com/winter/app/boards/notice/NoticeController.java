@@ -35,7 +35,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "list" ,method = RequestMethod.GET)
 	public String getList(Model model,Pager pager) throws Exception{
-		
+		System.out.println("notice list");
 		List<BoardDTO> ar = noticeService.getList(pager);
 		
 		//model.addAttribute("kind", "Notice"); //같은 jsp에 다른값을 넣기위해  종류를 알려주기위해 

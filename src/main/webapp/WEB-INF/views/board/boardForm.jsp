@@ -36,7 +36,7 @@
 		  </div>
 	
 	
-		<div id = "files">
+		<div id = "files" data-files-size="${dto.boardFileDTO.size()}">
 			
 			<button type="button" id="add">파일추가</button>
 		
