@@ -20,12 +20,47 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@RequestMapping(value = "addCart", method = RequestMethod.GET)
+	public void addCart() throws Exception{
+		
+		System.out.println("addCart");
+		
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "join", method = RequestMethod.GET)
 	public void join() throws Exception{
 		
 		
 		
 	}
+	//	/users/check
+	//check
+	
+	@RequestMapping(value="check",method = RequestMethod.GET)
+	public String check(UserDTO userDTO, Model model) throws Exception{
+			System.out.println("id중복 check");
+			System.out.println(userDTO.getUserName());
+			userDTO = userService.check(userDTO);
+			//userDTO == null 이면 회원가입 가능 중복이 아니다
+			//userDTO != null 이면 회원가입 불가능 중복이기 때문 
+			
+			int result = 0; // 중복이면 0 
+			if(userDTO == null) {
+				result = 1; //회원가입 가능 중복 x 
+			}
+			model.addAttribute("result",result);
+			
+			return "commons/ajaxResult";
+			
+	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="join", method = RequestMethod.POST)
 	public String join(UserDTO userDTO, MultipartFile profile, HttpSession session)throws Exception{

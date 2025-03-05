@@ -7,6 +7,8 @@ const btn1 = document.getElementById("btn1");
 const btn2 = document.getElementById("btn2");
 const frm = document.getElementById("frm");
 const btn3 = document.getElementById("btn3");
+const addCart = document.getElementById("addCart");
+
 
 
 btn1.addEventListener("click",function(){
@@ -33,11 +35,39 @@ btn2.addEventListener("click",function(){
 
 });
 
-btn3.addEventListener("click",function(){
-    frm.action="./reply";
-    frm.submit();
 
 
+// try {
+//     btn3.addEventListener("click",function(){
+//         frm.action="./reply";
+//         frm.submit();
+    
+//     })
+    
+// } catch (error) {
+    
+// }
+
+
+addCart.addEventListener("click",()=>{
+    let num = addCart.getAttribute("data-product-num")
+    let s =`hello ${num}`
+
+    console.log(num)
+    fetch(`../users/addCart?productNum=${num}`)
+    .then(res => res.text())
+    .then(res => {
+        if(res.trim()==="성공"){
+            if(confirm("장바구니에 추가되었습니다 이동하시겠습니까?")){
+                location.href ="../user/carts"
+            }
+        }else{
+            alert("장바구니 추가에 실패하였습니다")
+        }
+        
+    })
 });
 
+
+// cart 테이블 선택된거 insert 후 conform 메시지 띄우기 
 

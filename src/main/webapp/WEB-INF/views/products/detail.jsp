@@ -44,8 +44,9 @@
 					<input type="hidden" name="productNum" value="${dto.productNum}">
 					<button type="button" id="btn1">수정</button> 
 					<button type="button" id="btn2">삭제</button> 
-
+			
 				</form>
+				<button type="button" id="addCart" data-product-num="${dto.productNum}">장바구니</button>
 		</div>
 
 
@@ -70,7 +71,7 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>\
-<script src="../../../resources/js/detail.js"></script>
+<script src="/resources/js/detail.js"></script>
 
 </body>
 </html>

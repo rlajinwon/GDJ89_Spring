@@ -24,8 +24,9 @@
 						
 			<div class="mb-3">
 				<label for="userName" class="form-label">아이디
-					</label> <input type="text" name="userName" class="form-control"
+					</label> <input id ="id" type="text"name="userName" class="form-control"
 					id="userName" placeholder="아이디 입력하세요">
+					<div id="userNameResult"></div>
 			</div>
 			
 			<div class="mb-3">
@@ -73,5 +74,6 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
+<script src="/resources/js/users/join.js"></script>
 </body>
 </html>
