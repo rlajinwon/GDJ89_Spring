@@ -21,9 +21,16 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(value = "addCart", method = RequestMethod.GET)
-	public void addCart() throws Exception{
+	public void addCart(ProductDTO productDTO) throws Exception{
 		
-		System.out.println("addCart");
+		Long productNum = productDTO.getProductNum();
+		System.out.println(productNum);
+//		
+//		if (productNum >= 0) {
+//			return "성공";
+//		}
+//		
+//		return "실패";
 		
 	}
 	
