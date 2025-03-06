@@ -1,5 +1,9 @@
 package com.winter.app.users;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.winter.app.pages.Pager;
 import com.winter.app.products.ProductDTO;
 
 @Controller
@@ -21,18 +26,28 @@ public class UserController {
 	private UserService userService;
 
 	@RequestMapping(value = "addCart", method = RequestMethod.GET)
-	public void addCart(ProductDTO productDTO) throws Exception{
+	public String addCart(ProductDTO productDTO, HttpSession session, Model model) throws Exception{
 		
-		Long productNum = productDTO.getProductNum();
-		System.out.println(productNum);
-//		
-//		if (productNum >= 0) {
-//			return "성공";
-//		}
-//		
-//		return "실패";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("product", productDTO);
+		map.put("user", session.getAttribute("user"));
+		int result = userService.addCart(map);
+		model.addAttribute("result", result);
+		
+		
+		return "commons/ajaxResult";
+	}
+	@RequestMapping(value="carts", method = RequestMethod.GET)
+	public void getCartList(Pager pager, HttpSession session, Model model)throws Exception{
+		
+		List<ProductDTO> list = userService.getCartList(pager,(UserDTO)session.getAttribute("user"));
+		
+		model.addAttribute("carts", list);
+		model.addAttribute("pager", pager);
 		
 	}
+	
+	
 	
 	
 	
@@ -63,6 +78,24 @@ public class UserController {
 			return "commons/ajaxResult";
 			
 	}
+	
+	
+	
+	
+	@RequestMapping(value = "cartDelete", method = RequestMethod.GET)
+	public String cartDelete(Long [] productNum, HttpSession session, Model model)throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("user", session.getAttribute("user"));
+		map.put("products", productNum);
+		
+		int result = userService.cartDelete(map);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+		
+	}
+	
 	
 	
 	

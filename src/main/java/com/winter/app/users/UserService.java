@@ -2,6 +2,9 @@ package com.winter.app.users;
 
 import java.io.File;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -14,6 +17,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.files.FileManger;
+import com.winter.app.pages.Pager;
 import com.winter.app.products.ProductDTO;
 
 @Service
@@ -87,6 +91,27 @@ public class UserService {
 		
 		
 	}
+	public int addCart(Map<String, Object> map)throws Exception{
+		return userDAO.addCart(map);
+	}
+	
+	public List<ProductDTO> getCartList(Pager pager, Object userDTO)throws Exception{
+		
+		pager.make(userDAO.getCartTotalCount(userDTO));
+		
+		pager.makeNum();
+		Map<String, Object> map =new HashMap<String, Object>();
+		map.put("pager", pager);
+		map.put("user", userDTO);
+		return userDAO.getCartList(map);
+	}
+	
+	public int cartDelete(Map<String, Object> map)throws Exception{
+		return userDAO.cartDelete(map);
+	}
+	
+	
+
 
 	
 	

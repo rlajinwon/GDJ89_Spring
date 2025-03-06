@@ -49,24 +49,26 @@ btn2.addEventListener("click",function(){
 // }
 
 
-addCart.addEventListener("click",()=>{
-    let num = addCart.getAttribute("data-product-num")
-    let s =`hello ${num}`
-
-    console.log(num)
-    fetch(`../users/addCart?productNum=${num}`)
-    .then(res => res.text())
-    .then(res => {
-        if(res.trim()==="성공"){
-            if(confirm("장바구니에 추가되었습니다 이동하시겠습니까?")){
-                location.href ="../user/carts"
+    addCart.addEventListener("click", ()=>{
+        let num = addCart.getAttribute("data-product-num")
+        let s = `hello ${num}`
+    
+        fetch(`../users/addCart?productNum=${num}`)
+        .then(res => res.text())
+        .then(res => {
+            console.log("서버 응답: ", res); 
+            if(res.trim()=="1"){   //parseInt("1"), "1"+1
+                let r = confirm("장바구니로 이동??")
+                if(r){
+                    location.href='../users/carts';
+                }
+            }else {
+                alert('장바구니 등록 실패')
             }
-        }else{
-            alert("장바구니 추가에 실패하였습니다")
-        }
-        
+        }).catch(r=>{
+            alert('장바구니 등록 실패')
+        })
     })
-});
 
 
 // cart 테이블 선택된거 insert 후 conform 메시지 띄우기 

@@ -31,9 +31,14 @@
 						<c:if test="${not empty user}">
 							<li class="nav-item"><a class="nav-link"
 								href="/users/logout">로그아웃</a></li>
-							<li class="nav-item"><a class="nav-link"
-								href="/users/mypage?userName=${dto.userName}">내 정보</a></li>
-						</c:if>
+						<li class="nav-item">
+			        	<a class="nav-link" href="/users/mypage">내정보</a>
+			        </li>
+						</c:if>	
+						
+					<li class="nav-item">
+			        	<a class="nav-link" href="/users/carts"><i style="color: white;" class="bi bi-cart-check"></i></a>
+			        </li>
 
 
 						<c:if test="${empty user}">

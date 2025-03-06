@@ -108,6 +108,7 @@ public class NoticeController {
 		boardDTO = (NoticeDTO)noticeService.getDetail(boardDTO, false);
 		model.addAttribute("dto", boardDTO);
 		return "board/boardForm";
+		
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)

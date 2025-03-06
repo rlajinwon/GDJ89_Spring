@@ -1,5 +1,8 @@
 package com.winter.app.users;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -37,7 +40,20 @@ public class UserDAO {
 		return sqlSession.selectOne(NAMESPACE+"getDetail", userDTO);
 	}
 	
+	public int addCart(Map<String, Object> map)throws Exception{
+		return sqlSession.insert(NAMESPACE+"addCart", map);
+	}
 	
+	public Long getCartTotalCount(Object userDTO) throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getCartTotalCount", userDTO);
+	}
+	
+	public List<ProductDTO> getCartList(Map<String, Object> map)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getCartList", map);
+	}
+	public int cartDelete(Map<String, Object> map)throws Exception{
+		return sqlSession.delete(NAMESPACE+"cartDelete", map);
+	}
 	
 	
 }
