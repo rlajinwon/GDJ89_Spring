@@ -60,7 +60,7 @@ cart_delete.addEventListener('click', ()=>{
 checkAll.addEventListener('click', ()=>{
 
     for(let check of checks){
-        check.checked = checkAll.cheched;
+        check.checked = checkAll.checked;
     }
 })
 
