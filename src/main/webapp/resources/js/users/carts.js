@@ -14,9 +14,37 @@ product_join.addEventListener('click',()=>{
         }
     }
 
-    let url = "../accounts/add" + parmas.toString();
+    let f = new FormData()//form 객체 생성
+    f.append("",)
+    f.set()
+    
 
-    fetch(url)
+
+    // let url = `../accounts/add?${parmas.toString()}`;
+
+    
+        
+    //enctype = multipart/form-data 
+    fetch("../accounts/add",{
+        method:"POST",
+        headers:{
+            'Content-type':'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        body:parmas
+        
+    })
+        //promise
+        .then(r=> r.text())
+        .then(r=>{
+            if(parseInt(r.trim()) > 0){
+                alert('가입 성공')
+                location.reload();
+
+            }
+        })
+        .catch(e=>{
+            alert('관리자에게 문의하세요')
+        })
 
 
 
@@ -64,10 +92,10 @@ checkAll.addEventListener('click', ()=>{
     }
 })
 
-for(let chech of checks){
+for(let check of checks){
     check.addEventListener("click", ()=>{
         let r = true;
-        for(let c of checked){
+        for(let c of checks){
             if(!c.checked){
                 r= false;
             }
