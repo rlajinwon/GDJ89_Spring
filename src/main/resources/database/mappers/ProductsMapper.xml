@@ -55,7 +55,7 @@
 
  	
  	<select id="getList" resultType="com.winter.app.products.ProductDTO" parameterType="com.winter.app.pages.Pager">
-											SELECT * FROM
+						SELECT * FROM
 							(SELECT ROWNUM R, M.* FROM
 								(
 									SELECT * 

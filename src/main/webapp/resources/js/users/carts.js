@@ -14,10 +14,10 @@ product_join.addEventListener('click',()=>{
         }
     }
 
-    let f = new FormData()//form 객체 생성
-    f.append("",)
-    f.set()
-    
+    // let f = new FormData()//form 객체 생성
+    // f.append("",)
+    // f.set()
+
 
 
     // let url = `../accounts/add?${parmas.toString()}`;
@@ -25,31 +25,27 @@ product_join.addEventListener('click',()=>{
     
         
     //enctype = multipart/form-data 
-    fetch("../accounts/add",{
+    fetch("../accounts/add", {
         method:"POST",
         headers:{
-            'Content-type':'application/x-www-form-urlencoded; charset=UTF-8'
+            'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
         },
         body:parmas
-        
     })
         //promise
         .then(r=> r.text())
         .then(r=>{
+            console.log(r);
             if(parseInt(r.trim()) > 0){
-                alert('가입 성공')
+                alert('가입성공')
                 location.reload();
-
             }
         })
         .catch(e=>{
-            alert('관리자에게 문의하세요')
+            alert('관리자에게 문의')
         })
 
-
-
 })
-
 
 
 

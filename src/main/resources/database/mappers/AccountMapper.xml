@@ -7,7 +7,7 @@
   
   <mapper namespace="com.winter.app.accounts.AccountDAO">
   
-	<insert id="add">
+	<insert id="add" parameterType="java.util.List">
 		INSERT ALL 
 		
 		<foreach collection="list" item="item" open="" separator=" " close="">

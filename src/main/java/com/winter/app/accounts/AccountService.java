@@ -31,6 +31,7 @@ public class AccountService {
 		for(Long l : nums) {
 			AccountDTO accountDTO = new AccountDTO();
 			accountDTO.setProductNum(l);
+			System.out.println(l);
 			accountDTO.setUserName(userDTO.getUserName());
 		
 			Calendar ca = Calendar.getInstance();
@@ -42,10 +43,10 @@ public class AccountService {
 		
 		if(result > 0) {
 			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("user", map);
-			map.put("product", nums);
+			map.put("user", userDTO);
+			map.put("products", nums);
 			
-			result = userDAO.cartDelete(map);
+			userDAO.cartDelete(map);
 		}
 		
 		return result;

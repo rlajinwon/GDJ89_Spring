@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.winter.app.users.UserDTO;
 
 @Controller
-@RequestMapping("/accounts/*")
+@RequestMapping(value="/accounts/*")
 public class AccountController {
 
 	@Autowired
@@ -30,4 +30,11 @@ public class AccountController {
 		
 		
 	}
+	
+	
+	
+	
+	
+	
+	
 }
