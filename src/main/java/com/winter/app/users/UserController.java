@@ -38,12 +38,20 @@ public class UserController {
 		return "commons/ajaxResult";
 	}
 	@RequestMapping(value="carts", method = RequestMethod.GET)
-	public void getCartList(Pager pager, HttpSession session, Model model)throws Exception{
+	public String getCartList(Pager pager, HttpSession session, Model model)throws Exception{
+		
+		try {
 		
 		List<ProductDTO> list = userService.getCartList(pager,(UserDTO)session.getAttribute("user"));
 		
 		model.addAttribute("carts", list);
 		model.addAttribute("pager", pager);
+		
+		return "users/carts";
+		}
+		catch (Exception e) {
+			return "commons/error";
+		}
 		
 	}
 	
