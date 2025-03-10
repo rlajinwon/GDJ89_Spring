@@ -35,6 +35,16 @@
 		     <textarea class="form-control" name="boardContents" id="boardContents" rows="10">${dto.boardContents}</textarea>
 		  </div>
 	
+		<div class="mb-3">
+			<c:forEach items="${dto.boardFileDTO}" var ="f">
+			
+			<div class="alert alert-secondary" role="alert">
+				${f.oldName}<button type="button" data-file-num="${f.fileNum}" data-kind="${kind}" class="badge text-bg-secondary file-delete">X</button>
+				</div>
+			</c:forEach>
+		</div>
+	
+	
 	
 		<div id = "files" data-files-size="${dto.boardFileDTO.size()}">
 			
@@ -56,8 +66,8 @@
 	</div>
 </div>
 
-
-<script src="/resources/js/files/fileManger.js"></script>
+<!-- <script src="/resources/js/files/fileDelete.js"></script> -->
+<script type="module" src="/resources/js/files/fileManger.js"></script>
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>
 </body>

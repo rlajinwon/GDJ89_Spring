@@ -100,7 +100,7 @@ public class UserController {
 		
 		model.addAttribute("result", result);
 		
-		return "commons/ajaxResult";
+		return "commons	t";
 		
 	}
 	

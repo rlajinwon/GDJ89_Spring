@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.BoardDTO;
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.pages.Pager;
 import com.winter.app.users.UserDTO;
 
@@ -117,6 +118,19 @@ public class NoticeController {
 		
 		//return "redirect:./list";
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
+		
+		
+	}
+	
+	
+	@RequestMapping(value="fileDelete", method = RequestMethod.POST)
+	public String fileDelete(BoardFileDTO boardFileDTO,Model model, HttpSession session) throws Exception{
+		
+		int result = noticeService.fileDelete(boardFileDTO, session);
+		
+		model.addAttribute("result",result);
+		
+		return "commons/ajaxResult";
 		
 		
 	}

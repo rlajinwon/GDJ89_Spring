@@ -93,6 +93,16 @@
     WHERE BOARDNUM = #{boardNum}
 </update>
 
+	<select id="getFileDetail" resultType="com.winter.app.boards.BoardFileDTO" parameterType="com.winter.app.boards.BoardFileDTO">
+		SELECT * FROM NOTICEFILES WHERE FILENUM=#{fileNum}
+	</select>
+	
+
+	<delete id="fileDelete" parameterType="com.winter.app.boards.BoardFileDTO">
+		DELETE NOTICEFILES WHERE FILENUM =#{fileNum}
+	</delete>
+
+	
 	
   	
   </mapper>
