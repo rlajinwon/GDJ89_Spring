@@ -122,6 +122,22 @@
     WHERE BOARDNUM = #{boardNum}
 </update>
 
+
+	<select id="getFileDetail" resultType="com.winter.app.boards.BoardFileDTO" parameterType="com.winter.app.boards.BoardFileDTO">
+		SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
+	</select>
+
+
+
+	<delete id="fileDelete" parameterType="com.winter.app.boards.BoardFileDTO">
+		DELETE QNAFILES WHERE FILENUM =#{fileNum}
+	</delete>
+
+
+
+
+
+
 	
   	
   </mapper>

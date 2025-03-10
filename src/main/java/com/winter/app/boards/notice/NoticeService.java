@@ -72,8 +72,25 @@ public class NoticeService implements BoardService{
 		return result;
 	}
 	
-	public int delete(BoardDTO boardDTO) throws Exception{
-		return noticeDAO.delete(boardDTO);
+	public int delete(BoardDTO boardDTO,HttpSession session) throws Exception{
+		//1. 파일들의 정보를 조회 
+		boardDTO = noticeDAO.getDetail(boardDTO);
+		int result = noticeDAO.delete(boardDTO);
+		
+		//HDD 삭제 
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			System.out.println(path);
+			for(BoardFileDTO boardFileDTO:((NoticeDTO)boardDTO).getBoardFileDTO()) {
+			fileManger.fileDelete(path, boardFileDTO.getFileName());
+			
+			}
+			
+		}
+		
+		
+		
+		return result;
 	}
 	
 	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception{
@@ -106,8 +123,24 @@ public class NoticeService implements BoardService{
 	
 	
 	
-	public int update (BoardDTO boardDTO) throws Exception{
-		return noticeDAO.update(boardDTO);
+	public int update (BoardDTO boardDTO,MultipartFile [] attaches,HttpSession session) throws Exception{
+		int result = noticeDAO.update(boardDTO);
+		
+		for(MultipartFile attach:attaches) {
+			if(attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(attach, session.getServletContext());
+			//DB에 저장 
+			//
+			//여기서 BoardNum의 nullpointEx를 피하기 위해 매퍼에 mybatis에서 지원하는 selectKey를 이용하여 처리해주었다.
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = noticeDAO.addFile(boardFileDTO);
+			
+		}
+		
+		return result;
+		
 	}
 	
 	public BoardFileDTO fileSave(MultipartFile attach, ServletContext servletContext) throws Exception{
@@ -137,6 +170,10 @@ public class NoticeService implements BoardService{
 		
 			
 		
+	}
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception{
+		
+		return noticeDAO.getFileDetail(boardFileDTO);
 	}
 	
 

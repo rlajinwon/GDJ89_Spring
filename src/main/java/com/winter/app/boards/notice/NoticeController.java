@@ -97,9 +97,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public String delete(BoardDTO boardDTO) throws Exception{
+	public String delete(BoardDTO boardDTO,HttpSession session) throws Exception{
 		
-		noticeService.delete(boardDTO);
+		noticeService.delete(boardDTO,session);
 		return "redirect:./list";
 	}
 	
@@ -113,8 +113,9 @@ public class NoticeController {
 	}
 	
 	@RequestMapping(value="update", method = RequestMethod.POST)
-	public String update(BoardDTO boardDTO)throws Exception{
-		int result =  noticeService.update(boardDTO);
+	public String update(BoardDTO boardDTO, MultipartFile [] attaches, HttpSession session)throws Exception{
+		int result =  noticeService.update(boardDTO, attaches,session);
+		
 		
 		//return "redirect:./list";
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
@@ -133,6 +134,15 @@ public class NoticeController {
 		return "commons/ajaxResult";
 		
 		
+	}
+	
+	@RequestMapping(value="fileDown", method = RequestMethod.GET)
+	public String fileDown(BoardFileDTO boardFileDTO, Model model) throws Exception{
+		
+		boardFileDTO = noticeService.getFileDetail(boardFileDTO);
+		model.addAttribute("file", boardFileDTO);
+		
+		return "fileDownView";
 	}
 
 	

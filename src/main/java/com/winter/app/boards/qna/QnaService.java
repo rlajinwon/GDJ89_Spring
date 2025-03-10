@@ -72,11 +72,42 @@ public List<BoardDTO> getList(Pager pager) throws Exception{
 		return result;
 	}
 	
-	public int delete(BoardDTO boadrDTO) throws Exception{
-		return qnaDAO.delete(boadrDTO);
+	public int delete(BoardDTO boardDTO, HttpSession session) throws Exception{
+		boardDTO = qnaDAO.getDetail(boardDTO);
+		int result = qnaDAO.delete(boardDTO);
+		
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/notice/");
+			System.out.println(path);
+			for(BoardFileDTO boardFileDTO:((QnaDTO)boardDTO).getBoardFileDTO()) {
+			fileManger.fileDelete(path, boardFileDTO.getFileName());
+			
+			}
+			
+		}
+		
+		return result;
 	}
-	public int update (BoardDTO boadrDTO) throws Exception{
-		return qnaDAO.update(boadrDTO);
+	public int update (BoardDTO boardDTO,MultipartFile[] attaches, HttpSession session) throws Exception{
+		
+		int result = qnaDAO.update(boardDTO);
+		
+		for(MultipartFile attach:attaches) {
+			if(attach.isEmpty()) {
+				continue;
+			}
+			BoardFileDTO boardFileDTO = this.fileSave(attach, session.getServletContext());
+			
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			result = qnaDAO.addFile(boardFileDTO);
+		}
+		
+		
+		
+		return result;
+		
+		
+		
 	}
 	
 	public int reply(QnaDTO boardDTO) throws Exception{
@@ -119,6 +150,27 @@ public List<BoardDTO> getList(Pager pager) throws Exception{
 			
 		
 	}
+	public int fileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception{
+		
+		//1.정보 조회
+		boardFileDTO = qnaDAO.getFileDetail(boardFileDTO);
+		
+		//2.DB삭제 
+		int result = qnaDAO.fileDelete(boardFileDTO);
+		
+		
+		//3. HDD 삭제 
+		if(result > 0) {
+			String path = session.getServletContext().getRealPath("/resources/images/qna/");
+			System.out.println(path);
+			fileManger.fileDelete(path, boardFileDTO.getFileName());
+			
+		}
+		
+		return result;
+	}
+	
+	
 	
 
 	
