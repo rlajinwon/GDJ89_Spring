@@ -1,10 +1,15 @@
 package com.winter.app.products;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.pages.Pager;
 
 
@@ -61,6 +66,30 @@ public class ProductService {
 			return productDAO.update(productDTO);
 		}
 		
+		//-------------------------------------------comment
+		
+		public int commentAdd(CommentsDTO commentsDTO) throws Exception{
+			return productDAO.commentAdd(commentsDTO);
+		}
+		
+		public List<CommentsDTO> commentGet(CommentsDTO commentsDTO,Pager pager) throws Exception{
+			
+			Long totalCount = productDAO.getCommentsTotal(commentsDTO);
+			
+			
+			pager.make(totalCount);
+			
+			
+			pager.makeNum();
+			
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("comments", commentsDTO);
+			map.put("pager", pager);
+			
+			return productDAO.getCommentsList(map);
+		}
+		
+
 		
 
 }

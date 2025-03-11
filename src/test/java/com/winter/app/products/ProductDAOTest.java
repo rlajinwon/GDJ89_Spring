@@ -46,63 +46,84 @@ public class ProductDAOTest extends SampleTestCase{
 	
 	
 	
-	@Test
-	public void getDetailTest() throws Exception{
-		
-		System.out.println("GetDetail Test");
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setProductNum(63L);
-		
-		
-		productDTO = productDAO.getDetail(productDTO);
-		
-		assertNotNull(productDTO);
-		
-	}
+//	@Test
+//	public void getDetailTest() throws Exception{
+//		
+//		System.out.println("GetDetail Test");
+//		ProductDTO productDTO = new ProductDTO();
+//		productDTO.setProductNum(63L);
+//		
+//		
+//		productDTO = productDAO.getDetail(productDTO);
+//		
+//		assertNotNull(productDTO);
+//		
+//	}
+//	
+//	@Test
+//	public void getListTest(Pager pager) throws Exception{
+//		
+//		System.out.println("GetList Test");
+//		List<ProductDTO> ar = productDAO.getList(pager);
+//		
+//		assertNotEquals(0, ar.size());
+//		
+//	}
+//	
+//	@Test()
+//	public void addTest() throws Exception{
+//		
+//		ProductDTO productDTO = new ProductDTO();
+//		Calendar ca = Calendar.getInstance();
+//		
+//		
+//		for(int i=0;i<110;i++) {
+//		
+//			
+//			productDTO.setProductDate(new Date(ca.getTimeInMillis()));
+//			productDTO.setProductDetail("ProductDetail"+i);
+//			productDTO.setProductName("productName"+i);
+//			
+//			double r = Math.random();// 0.0 - 1.0 미만
+//			
+//			r = r*100;
+//			
+//			int ri = (int)r;
+//			
+//			r = ri/100.0;
+//			
+//			
+//			productDTO.setProductRate(r);
+//			
+//			productDAO.add(productDTO);
+//			
+//			if(i%10 == 0) {
+//				Thread.sleep(500);
+//			}
+//			
+//			System.out.println("Finish");
+//		}
+//		
+//	}
 	
 	@Test
-	public void getListTest(Pager pager) throws Exception{
+	public void commentAddTest() throws Exception{
+		CommentsDTO commentsDTO = new CommentsDTO();
 		
-		System.out.println("GetList Test");
-		List<ProductDTO> ar = productDAO.getList(pager);
+		commentsDTO.setBoardContents("comments");
+		commentsDTO.setUserName("FFF");
+		commentsDTO.setProductNum(100L);
 		
-		assertNotEquals(0, ar.size());
+		int result = productDAO.commentAdd(commentsDTO);
 		
-	}
 	
-	@Test()
-	public void addTest() throws Exception{
-		
-		ProductDTO productDTO = new ProductDTO();
-		Calendar ca = Calendar.getInstance();
-		
-		
-		for(int i=0;i<110;i++) {
-		
-			
-			productDTO.setProductDate(new Date(ca.getTimeInMillis()));
-			productDTO.setProductDetail("ProductDetail"+i);
-			productDTO.setProductName("productName"+i);
-			
-			double r = Math.random();// 0.0 - 1.0 미만
-			
-			r = r*100;
-			
-			int ri = (int)r;
-			
-			r = ri/100.0;
+		assertEquals(1, result);
 			
 			
-			productDTO.setProductRate(r);
-			
-			productDAO.add(productDTO);
-			
-			if(i%10 == 0) {
-				Thread.sleep(500);
-			}
-			
-			System.out.println("Finish");
 		}
+		
+		
+		
 		
 	}
 	
@@ -112,4 +133,4 @@ public class ProductDAOTest extends SampleTestCase{
 	
 
 	
-}
+

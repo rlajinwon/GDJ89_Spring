@@ -1,6 +1,9 @@
 package com.winter.app.products;
 
+import java.io.Reader;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.pages.Pager;
+import com.winter.app.users.UserDTO;
 
 @Controller
 @RequestMapping(value = "/products/*")
@@ -143,6 +148,73 @@ public class ProductController {
 		
 		
 	}
+	
+	// Contents -------------------------------------------------------
+	
+	
+	@RequestMapping(value = "commentAdd", method = RequestMethod.POST)
+	public String commentAdd(CommentsDTO commentsDTO,HttpSession session,Model model) throws Exception{
+		
+
+		
+		
+		
+		UserDTO userDTO = (UserDTO)session.getAttribute("user");
+		commentsDTO.setUserName(userDTO.getUserName());
+
+		
+		int result = productService.commentAdd(commentsDTO);
+		
+		model.addAttribute("result", result);
+		
+		return "commons/ajaxResult";
+		
+		
+		
+	}
+	
+	@RequestMapping(value ="getCommentsList", method = RequestMethod.GET)
+	public String getCommentsList(CommentsDTO commentsDTO,Pager pager,Model model) throws Exception{
+		
+		System.out.println("comments list");
+		List<CommentsDTO> ar = productService.commentGet(commentsDTO, pager);
+		model.addAttribute("list", ar);
+		
+		
+		return "commons/commentsList";
+		
+		
+	}
+	
+//	
+//	@RequestMapping(value="commentDelete", method = RequestMethod.POST)
+//	public String fileDelete(CommentsDTO commentsDTO,Model model, HttpSession session) throws Exception{
+//		
+//		int result = productService.commentDelete(commentsDTO, session);
+//		
+//		model.addAttribute("result",result);
+//		
+//		return "commons/ajaxResult";
+//		
+//		
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	
 

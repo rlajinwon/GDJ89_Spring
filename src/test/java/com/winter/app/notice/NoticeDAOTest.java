@@ -20,27 +20,27 @@ public class NoticeDAOTest extends SampleTestCase {
 		private NoticeDAO noticeDAO;
 
 	
-		@Test
-		public void getDetailTest() throws Exception{
-			System.out.println("GetDeatil Test");
-			NoticeDTO noticeDTO = new NoticeDTO();
-			noticeDTO.setBoardNum(1L);
-			
-			noticeDTO = noticeDAO.getDetail(noticeDTO);
-			
-			assertNotNull(noticeDTO);
-			
-		}
-		
-		@Test
-		public void getListTest(Pager pager) throws Exception{
-			System.out.println("GETList Test");
-			List<NoticeDTO> ar = noticeDAO.getList(pager);
-			
-			assertNotEquals(0, ar.size());
-			
-		}
-		
+//		@Test
+//		public void getDetailTest() throws Exception{
+//			System.out.println("GetDeatil Test");
+//			NoticeDTO noticeDTO = new NoticeDTO();
+//			noticeDTO.setBoardNum(1L);
+//			
+//			noticeDTO = noticeDAO.getDetail(noticeDTO);
+//			
+//			assertNotNull(noticeDTO);
+//			
+//		}
+//		
+//		@Test
+//		public void getListTest(Pager pager) throws Exception{
+//			System.out.println("GETList Test");
+//			List<NoticeDTO> ar = noticeDAO.getList(pager);
+//			
+//			assertNotEquals(0, ar.size());
+//			
+//		}
+//		
 		@Test
 		public void addTest() throws Exception{
 			

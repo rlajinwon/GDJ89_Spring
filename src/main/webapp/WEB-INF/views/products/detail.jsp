@@ -64,6 +64,18 @@
 </div> -->
 
 
+<body class="bg-light">
+    <div class="mt-2 p-3 bg-body rounded shadow-sm">
+        <h2 class="fs-6">댓글 쓰기</h2>
+        <input id="comment_input" class="form-control" type="text">
+        <div class="d-flex justify-content-end">
+            <button id="btn_add" class="btn btn-dark">등록</button>
+        </div>
+    </div>
+</body>
+
+	<div class="mb-3" id="commentsListResult"></div>
+
 
 	</div>
 </div>
@@ -71,7 +83,7 @@
 
 <c:import url="/WEB-INF/views/templates/layout_footer.jsp"></c:import>
 <c:import url="/WEB-INF/views/templates/boot_js.jsp"></c:import>\
-<script src="/resources/js/detail.js"></script>
+<script src="/resources/js/products/detail.js"></script>
 
 </body>
 </html>

@@ -96,6 +96,56 @@
  	
  	
  
+ 
+
+<!-- comment-->
+
+
+ 
+  	
+ 	<insert id="commentAdd" parameterType="com.winter.app.products.CommentsDTO">
+ 		INSERT INTO COMMENTS VALUES (COMMENTS_SEQ.NEXTVAL,#{boardContents},SYSDATE,#{userName},#{productNum})		
+ 	</insert>
+ 
+ 
+ 
+ 
+ 
+ 	<select id="getCommentsList" resultType="com.winter.app.products.CommentsDTO" parameterType="java.util.Map">
+		
+					    SELECT * 
+						    FROM 
+						    (
+						        SELECT ROWNUM AS R, C.* 
+						        FROM COMMENTS C
+						        WHERE C.PRODUCTNUM = #{comments.productNum}
+						        ORDER BY C.BOARDNUM ASC
+						    ) 
+						    WHERE R BETWEEN #{pager.startNum} AND #{pager.endNum}
+								
+
+		
+	</select>
+
+	<select id="getCommentsTotal" parameterType="com.winter.app.products.CommentsDTO" resultType="Long">
+	 	SELECT COUNT(BOARDNUM) FROM COMMENTS WHERE BOARDNUM=#{productNum}
+	
+	</select>
+	
+	
+	<delete id="commentDelete" parameterType="com.winter.app.products.CommentsDTO">
+		DELETE COMMENTS WHERE BOARDNUM =#{boardNum}
+	</delete>
+	
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  </mapper> 
    
  

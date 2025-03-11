@@ -5,12 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import javax.naming.spi.DirStateFactory.Result;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.winter.app.boards.BoardFileDTO;
 import com.winter.app.pages.Pager;
 
 
@@ -84,6 +87,32 @@ public class ProductDAO {
 		}
 		
 	
+		//----------------------------------Comments----------------------------
+		
+		public int commentAdd(CommentsDTO commentsDTO) throws Exception{
+			return sqlsession.insert(NAMESPACE+"commentAdd",commentsDTO);
+			
+		}
+		
+		
+		public List<CommentsDTO> getCommentsList(Map<String, Object> map) throws Exception{
+			return sqlsession.selectList(NAMESPACE+"getCommentsList", map);
+			
+		}
+		public Long getCommentsTotal(CommentsDTO commentsDTO) throws Exception{
+			return sqlsession.selectOne(NAMESPACE+"getCommentsTotal",commentsDTO);
+		}
+		
+		
+		public int commentDelete(CommentsDTO commentsDTO) throws Exception{
+			return sqlSession.delete(NAMESPACE+"commentDelete", commentsDTO);
+		}
+		
+		
+		
+		
+		
+		
 		
 	
 	
