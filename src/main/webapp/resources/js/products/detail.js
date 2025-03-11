@@ -196,7 +196,7 @@ commentsListResult.addEventListener('click',(e)=>{
 })
 
 
-const commentDelete = document.querySelectorAll(".comment");
+const commentDelete = document.querySelectorAll(".commentDelete");
 
 for(let f of file_delete){
     f.addEventListener('click',()=>{
@@ -209,8 +209,8 @@ for(let f of file_delete){
             
             //돟기식 비동기식
             //'post'
-            let url =`/${kind}/comment`;
-            url = './comment';
+            let url =`/${kind}/commentDelete`;
+            url = './commentDelete';
             fetch(url,{
                 method:'POST',
                 headers:{
@@ -238,4 +238,4 @@ for(let f of file_delete){
 
 
     })
-}
+}   
