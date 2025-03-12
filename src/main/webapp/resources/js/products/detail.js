@@ -11,7 +11,8 @@ const addCart = document.getElementById("addCart");
 const btn_add = document.getElementById("btn_add");
 const commentsListResult = document.getElementById("commentsListResult");
 const pages = document.getElementsByClassName("pages");
-
+const commentDelete = document.querySelectorAll(".commentDelete");
+// modal_change 추가 
 
 
 
@@ -185,10 +186,52 @@ function addComments(){
 
 }
 
-commentsListResult.addEventListener('click',(e)=>{
-    if(e.target.classList.contains('pages')){
+
+//Delete
+//바닐라 스크립트? 
+commentsListResult.addEventListener('click',async(e)=>{
+    if(e.target.classList.contains('commentDelete')){
         let p = e.target.getAttribute("data-page-num");
-        getList(p)
+        
+        let f = new FormData();
+        f.append("boardNum", p)
+
+        await fetch("./commentDelete",{
+            method:"POST",
+            body:f
+        })
+        .then(r=> r.text())
+        .then(r=>{
+            if(r.trim()*1>0){
+                alert('삭제성공')
+            }else{
+                alert('삭제 실패')
+            }
+        })
+        
+        .catch(e=>{
+            alert('오류입니다')
+        })
+        
+    }
+    getList(1)
+
+})
+
+
+//update
+commentsListResult.addEventListener('click', async (e)=>{
+    if(e.target.classList.contains("commentUpdate")){
+        let ud = e.target; //button
+        let ud_s = ud.parentElement.previousElementSibling.previousElementSibling;
+    
+        let c = ud_s.innerHTML;
+        // ud_s.innerHTML="<textarea></textarea>";
+
+        prompt("입력")
+
+        // document.getElementById('message-text').value=c;
+        // c=ud.getAttribute("data-update-boardNum") 더 작성
 
 
     }
@@ -196,46 +239,76 @@ commentsListResult.addEventListener('click',(e)=>{
 })
 
 
-const commentDelete = document.querySelectorAll(".commentDelete");
 
-for(let f of file_delete){
-    f.addEventListener('click',()=>{
-        let check = confirm("정말 삭제하시겠습니까?")
-        if(check){
-            //DB에서 삭제 , HDD에서 삭제
-            let num = f.getAttribute("data-file-num");
-            let kind = f.getAttribute("data-kind");
+
+
+// modal_change
+//매퍼-DAO
+//
+// modal_change.addEventListener('click',()=>{
+// let m =document.getElementById('message-text').value
+
+// let f =new FormData();
+// f.append("boardContents",m)
+
+// fetch('./commentUpdate',{
+//     method:'POST',
+
+// })
+
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// for(let f of file_delete){
+//     f.addEventListener('click',()=>{
+//         let check = confirm("정말 삭제하시겠습니까?")
+//         if(check){
+//             //DB에서 삭제 , HDD에서 삭제
+//             let num = f.getAttribute("data-file-num");
+//             let kind = f.getAttribute("data-kind");
             
             
-            //돟기식 비동기식
-            //'post'
-            let url =`/${kind}/commentDelete`;
-            url = './commentDelete';
-            fetch(url,{
-                method:'POST',
-                headers:{
-                    "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
-                },
-                body: `fileNum=${num}` // 'fileNum='+num
-            })
-            .then(r => r.text())
-            .then(r => {
-                if(r.trim()*1>0){
-                    //1.파일갯수 count 수정 
-                    // count--;
-                    //2. Element 삭제
-                    f.parentElement.remove()
+//             //돟기식 비동기식
+        
+//             let url =`/${kind}/commentDelete`;
+//             url = './commentDelete';
+//             fetch(url,{
+//                 method:'POST',
+//                 headers:{
+//                     "Content-type":"application/x-www-form-urlencoded; charset=UTF-8"
+//                 },
+//                 body: `fileNum=${num}` // 'fileNum='+num
+//             })
+//             .then(r => r.text())
+//             .then(r => {
+//                 if(r.trim()*1>0){
+//                     //1.파일갯수 count 수정 
+//                     // count--;
+//                     //2. Element 삭제
+//                     f.parentElement.remove()
                         
 
-                }else{
-                    alert('실패')
-                }
-            })
-            .catch(e =>{
-                alert('오류');
-            })
-        }
+//                 }else{
+//                     alert('실패')
+//                 }
+//             })
+//             .catch(e =>{
+//                 alert('오류');
+//             })
+//         }
 
 
-    })
-}   
+//     })
+// }   

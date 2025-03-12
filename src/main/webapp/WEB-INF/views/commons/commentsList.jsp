@@ -30,7 +30,10 @@
         		<td>${c.userName}</td>
         		<td>${c.boardContents}</td>
         		<td>${c.boardDate}</td>
-                <td><button class="btn btn-dark deleteComments btnDelete">삭제</button></td>
+                <td>
+                    <button class="btn btn-dark deleteComments commentUpdate">수정</button>    
+                    <button class="btn btn-dark deleteComments commentDelete">삭제</button>
+                </td>
         	</tr>
         </c:forEach>
 

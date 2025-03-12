@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.BoardFileDTO;
@@ -186,6 +187,29 @@ public class ProductController {
 		
 	}
 	
+	@RequestMapping(value ="detailFiles", method = RequestMethod.POST)
+	public String detailFiles(MultipartFile uploadFile,HttpSession session,Model model) throws Exception{
+		System.out.println(uploadFile.getOriginalFilename());
+		String fileName = productService.detailFiles(session, uploadFile);
+		
+		fileName = "/resources/images/products/"+fileName;
+		
+		model.addAttribute("result", fileName);
+		
+		return "commons/ajaxResult";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 //	
 //	@RequestMapping(value="commentDelete", method = RequestMethod.POST)
 //	public String fileDelete(CommentsDTO commentsDTO,Model model, HttpSession session) throws Exception{
@@ -201,16 +225,7 @@ public class ProductController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

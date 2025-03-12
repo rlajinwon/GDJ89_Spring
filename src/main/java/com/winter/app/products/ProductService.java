@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.winter.app.boards.BoardFileDTO;
+import com.winter.app.files.FileManger;
 import com.winter.app.pages.Pager;
 
 
@@ -18,8 +20,8 @@ public class ProductService {
 	
 	@Autowired
 	private ProductDAO productDAO;
-	
-	
+	@Autowired
+	private FileManger fileManger;
 	
 
 	
@@ -89,7 +91,12 @@ public class ProductService {
 			return productDAO.getCommentsList(map);
 		}
 		
-
+		public String detailFiles(HttpSession session,MultipartFile files)throws Exception{
+			String path = session.getServletContext().getRealPath("/resources/images/products/");
+			System.out.println(path);
+			String fileName =  fileManger.fileSave(path, files);
+			return fileName;
+		}
 		
 
 }
