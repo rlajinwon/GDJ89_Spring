@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.winter.app.SampleTestCase;
 import com.winter.app.pages.Pager;
@@ -22,6 +23,15 @@ public class ProductDAOTest extends SampleTestCase{
 	
 	@Autowired //객체 주입
 	private ProductDAO productDAO;
+	
+	@Value("${my.user}")
+	private String userName;
+	
+	@Test
+	public void usernameTest() {
+		System.out.println(userName);
+	}
+	
 	
 	@BeforeClass
 	public static void bf() {

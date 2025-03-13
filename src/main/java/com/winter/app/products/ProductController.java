@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.winter.app.boards.BoardFileDTO;
+import com.winter.app.files.FileDTO;
 import com.winter.app.pages.Pager;
 import com.winter.app.users.UserDTO;
 
@@ -25,7 +27,6 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
-	
 	
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -197,6 +198,20 @@ public class ProductController {
 		model.addAttribute("result", fileName);
 		
 		return "commons/ajaxResult";
+	}
+	
+	
+	@RequestMapping(value ="detailFilesDelete",method = RequestMethod.POST)
+	public String detailFilesDelete(FileDTO fileDTO,HttpSession session,Model model) throws Exception{
+		
+		System.out.println(fileDTO.getFileName());
+		
+//		model.addAttribute("result", fileName);
+		productService.detailFilesDelete(fileDTO, session);
+		model.addAttribute("result",1);
+		return "commons/ajaxResult";
+		
+		
 	}
 	
 	
