@@ -65,12 +65,12 @@
 	
 		<form id="frm" action="/test" method="">
 					<input type="hidden" name="boardNum" value="${dto.boardNum}">
+					<c:if test="${dto.userName eq user.userName}">
 					<button type="button" id="btn1">수정</button> 
 					<button type="button" id="btn2">삭제</button> 
+					</c:if>
 					<button type="button" id="btn3">답글</button> 
 					
-
-
 
 				</form>
 
