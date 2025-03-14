@@ -72,12 +72,20 @@
 					  </ul>
 					</nav>
 		
-			
+		<c:if test="${kind eq 'notice' and not empty user and user.userName eq 'FFF'}">
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
   			<a href ="./add" ><button class="btn btn-dark me-md-2" type="button">글 작성</button></a>
 		</div>
 	
+	</c:if>
 	
+				
+		<c:if test="${kind ne 'notice' and not empty user}">
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+  			<a href ="./add" ><button class="btn btn-dark me-md-2" type="button">글 작성</button></a>
+		</div>
+	
+	</c:if>
 	
 	</div>
 </div>

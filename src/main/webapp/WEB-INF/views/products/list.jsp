@@ -88,10 +88,11 @@
 					</nav>
 		
 	
-		
+		<c:if test="${user.userName eq 'FFF'}">	
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
   			<a href ="/products/add" ><button class="btn btn-dark me-md-2" type="button">추가</button></a>
 		</div>
+	</c:if>
 	
 	</div>
 </div>

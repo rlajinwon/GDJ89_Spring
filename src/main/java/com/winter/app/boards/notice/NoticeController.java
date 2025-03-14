@@ -76,7 +76,8 @@ public class NoticeController {
 		
 	
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String add(ModelAndView mv) throws Exception{
+	public String add() throws Exception{
+
 		
 		return "board/boardForm";
 		
