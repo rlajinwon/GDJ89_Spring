@@ -74,6 +74,13 @@ public class UserService {
 			 if(result.getPassWord().equals(userDTO.getPassWord())) {
 				 return result;
 			 }
+			 
+			 throw new UsernameException("비번 재확인");	
+			 
+		 }
+		 
+		 if(result == null) {
+		 throw new UsernameException("id or pw 확인");
 		 }
 		 
 		 return null;
